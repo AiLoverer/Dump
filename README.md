@@ -8,7 +8,10 @@ Dump是专门解决Crash崩溃收集和分析的解决方案；
 
 # 平台
 
+## CrashRpt:
 * Windows operating system (Windows Vista or later).
+## CrashFix：
+* Windows operating system (Windows Vista or later)./ Linux operating system.
 * Apache HTTP Server (version 2.2 or later).
 * PHP (version 5.3 or later).
 * Database (MySQL).
@@ -17,7 +20,7 @@ Dump是专门解决Crash崩溃收集和分析的解决方案；
 
 # 官网：
 ## Crashrpt:
-> [Crashrpt](http://crashrpt.sourceforge.net/docs/html/crashfix_server.html)
+> [Crashrpt](http://crashrpt.sourceforge.net/docs/html/index.html)
 ## CrashFix:
 > [CrashFix](http://crashfix.sourceforge.net/doc/html/index.html)
 ### Windows下安装
