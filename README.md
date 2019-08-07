@@ -5,13 +5,17 @@
 Dump是专门解决Crash崩溃收集和分析的解决方案；
 分为前端采集和后端分析模块
 前端收集库采用CrashRpt、后端分析库采用CrashFix 在此记录！
+
 #平台
+
 Windows系统
+
 #官网：
 Crashrpt:
 [Crashrpt](http://crashrpt.sourceforge.net/docs/html/crashfix_server.html)
 CrashFix:
 [CrashFix](http://crashfix.sourceforge.net/doc/html/index.html)
+
 #目录结构
 --crashfix
 	源码
