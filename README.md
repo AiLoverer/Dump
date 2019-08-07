@@ -18,11 +18,11 @@ CrashFix:
 
 # 目录结构
 
-*--crashfix
-	>源码
-*--crashrpt
-	>源码
-*--Backup
-	>备份和生成文件
-*--README.md
-	>简介
+* --crashfix
+	> 源码
+* --crashrpt
+	> 源码
+* --Backup
+	> 备份和生成文件
+* --README.md
+	> 简介
