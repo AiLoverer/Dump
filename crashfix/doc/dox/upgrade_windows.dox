@@ -1,0 +1,78 @@
+/*!
+\page upgrade_windows Upgrading CrashFix in Windows
+
+This page contains instructions of upgrading CrashFix components
+from a previous version to the newest version in Windows operating system.
+
+\section upgrade_make_backup First Make a Backup
+
+It is recommended to do a backup of CrashFix files before you upgrade them. 
+
+Copy entire directory where you have installed the CrashFix web application
+(<i>%DOCUMENT_ROOT%/crashfix</i>) or at least only its subdirectory containing
+crash report files and debug info files (<i>%DOCUMENT_ROOT%/crashfix/protected/data</i>).
+
+To backup your MySQL database, you can use the <i>mysqldump</i> tool. From your command shell,
+run the following command:
+
+<pre>
+mysqldump -u root -p database_name &gt; database_backup.txt
+</pre>
+    
+The command above will create the file <i>database_backup.txt</i> in the current
+directory. The file will contain SQL instructions for creating the <i>database_name</i>
+database and filling its tables. The <i>database_name</i> plaseholder should be the name 
+of the database where CrashFix tables are stored.
+
+If something happens when you upgrade your database, you can use the 
+<i>mysql</i> tool to restore previous state of the database. 
+If you decide to restore your database, from your command shell, run the following command:
+
+<pre>
+mysql -uroot -p database_name &lt; database_backup.txt
+</pre>
+</div>
+
+\section upgrade_webapp Upgrading CrashFix Web Application
+
+Download the CrashFix web application <i>ZIP</i> archive from our Download 
+page. Then unpack the archive to web server's document root directory.
+
+Edit the <i>%DOCUMENT_ROOT%/crashfix/protected/config/user_params.ini</i> config file and
+specify the correct database connection string, login and password. For additional
+information on config file fields and their meaning, please refer to
+comment lines that can be found in the config file.
+
+<i>Note:</i> you can just copy the <i>user_params.ini</i> file that you have
+previously saved for backup.
+
+After that, if everything is OK, you should be able to see 
+the following page in your browser:
+
+\image html webapp_login_page_win32.png "Web application login page"
+
+\subsection upgrade_crashfix_db Upgrading CrashFix Database
+
+And at last, CrashFix database tables must be upgraded before using the 
+web application. This is performed by the database migration mechanism.
+To upgrade the database tables, run the following command from DOS shell:
+
+<pre>
+php %DOCUMENT_ROOT%/crashfix/protected/yiic.php migrate
+</pre>
+
+When prompted, press 'y' and then press 'Enter'. If everything is OK, the
+following message appears:
+
+<pre>
+Migrated up successfully.
+</pre>
+
+Now your CrashFix web application is upgraded.
+
+\section upgrade_crashfix_service Upgrading CrashFix Service
+
+Download the CrashFix service installer EXE file from our Download page.
+Then run the installer wizard and follow the installation steps.
+
+*/

@@ -1,0 +1,75 @@
+/*!
+
+\page projects Projects
+
+The term <i>project</i> is a synonym of a client application. For example, if you develop
+the application named Editor, you may create a project named Editor that
+will receive crash reports from your Editor application.
+
+CrashFix administration model uses the concept of project isolation.
+For example, users of project A may not know anything about
+resources of another project B.
+
+Every project has associated quotas. The quotas define how many disk space the 
+project may take. 
+
+To manage projects, you need to log in under the root user or under another user
+having permission to access Administer panel. After you have logged in, 
+click the <i>Administer</i> button on the Main menu.
+Administer panel appears. Click the <i>Projects</i> item on the top menu.
+The <i>Projects</i> page appears (shown in the figure below).
+
+\image html admin_projects.png "Administer Projects"
+
+When you are logging in the first time, there are no projects on that page. 
+To create a new project, click the 
+<i>Add New Project</i> button. The <i>Add New Project</i> page appears 
+(shown in the figure below).
+
+\image html admin_add_new_project.png "Add new project"
+
+You should enter new project's name, short description and specify disc quotas
+for the new project. By default, the following quotas are specified:
+
+<ul>
+<li>Maximum 100 crash reports per crash collection</li>
+<li>Maximum 512 MB of disk space for crash report files</li>
+<li>Maximum 100 MB of disk space for bug attachment files</li>
+<li>Maximum 2 GB of disk space for debugging symbols</li>
+</ul>		
+
+Disk quotas can be modified as desired. For example, you can increase the quota
+for debugging symbols up to 100 GB by entering 102400 in the corresponding field.
+You can also enter 0 (zero) as a quota value do make it unlimited.
+
+Under the <i>Misc Options</i> section, you can define the way CrashFix will search for matching 
+symbol files for your project. Typically, a symbol file is considered matching if both its
+GUID and Age are equal to GUID and Age embedded into crash report's minidump file. If you want to
+load symbol file even if its build age does not match accurately, you can remove check mark from the 
+<i>Require exact build age for debugging symbols</i> check box.
+After that, CrashFix will load the symbols even if their build age does not match accurately.
+
+Next, click the <i>Create</i> button to create the project. The project details
+page appears (shown in the figure below).
+
+\image html admin_project_details.png "Project details"
+
+On the appeared project details page, you can see project details (name, description,
+status and disc quotas). The status Active means the project is accepting new crash reports.
+You may disable project to forbid accepting new crash reports, and to forbid browsing and managing project
+resources.
+
+At the bottom of the project details page, you can see the <i>Users Participating in this Project</i> section. 
+Here you can add users to project. To do this,
+click the <i>Add User(s)</i> button. The <i>Add Project Members</i> page appears (shown in the figure below).	
+
+\image html admin_project_add_user.png "Add user to project"
+
+On the appeared page, you should set check marks in front of user names you 
+want to add to project and set their roles. For example,
+user John may be an administrator in project A and a developer in project B.
+
+Further reading: \ref daemon
+</p>
+
+*/

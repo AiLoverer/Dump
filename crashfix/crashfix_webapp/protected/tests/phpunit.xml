@@ -1,0 +1,28 @@
+<phpunit bootstrap="bootstrap.php"
+		colors="false"
+		convertErrorsToExceptions="true"
+		convertNoticesToExceptions="true"
+		convertWarningsToExceptions="true"
+                stderr="true"
+		stopOnFailure="false">
+
+        <!--<logging>
+            <log type="coverage-html" target="./report" charset="UTF-8"
+                 yui="true" highlight="true"
+                 lowUpperBound="50" highLowerBound="80"/>
+            <log type="testdox-html" target="./testdox.html" />
+        </logging>-->
+
+	<selenium>		
+		<browser name="Internet Explorer" browser="*iexplore" />
+		<browser name="Firefox" browser="*firefox" />
+	</selenium>
+
+        <filter>
+            <!-- Exclude this dir from code coverage report -->
+            <blacklist>
+               <directory suffix=".php">../framework</directory>
+               <directory suffix=".php">../vendors</directory>
+            </blacklist>
+        </filter>
+</phpunit>

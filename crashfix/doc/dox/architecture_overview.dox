@@ -1,0 +1,106 @@
+/*!
+
+\page architecture_overview Architecture Overview
+
+Before we describe the architecture, lets introduce some terms and definitions.
+
+\section definitions Definitions
+
+A client application is a Windows application written in C++ language 
+and built in Visual C++ IDE. A client application is the application 
+you want to use crash reporting with.
+
+Crash reporting is a technique allowing to receive user feedback and 
+improve quality and stability of your client application.
+
+A end user is a person who downloads and installs your client application 
+on his/her machine running Windows operating system. A end user may be 
+located in any country of the world. If a critical error occurs in your 
+client application on end user's machine, you may have no easy way to 
+request the details.
+
+A Crash Reporting Library is a Windows application written in C++ language 
+and built in Visual C++ IDE. The purpose of the crash reporting library is 
+to intercept critical errors (exceptions) in your client application, arising 
+on end user's machine, generate crash reports and send those reports over the 
+network to CrashFix server.
+
+CrashFix software is a server system. It installs and runs on the server 
+infrastructure of your choice. Its purpose is to receive crash reports sent 
+by the crash reporting library, process and store them, and to provide 
+graphical user interface to CrashFix users.
+
+A CrashFix user is a person who has an account in CrashFix web application. 
+A CrashFix user may be assigned certain permissions and project roles, and 
+can log into CrashFix web application using a web browser and perform some actions.
+
+\section Main CrashFix Components
+
+CrashFix software consists of two server-side components: 
+CrashFix service and CrashFix web application, and of a client-side component: 
+CrashFix debugging symbol uploader tool. Those components are denoted as 
+blue rectangles on the figure below.
+
+The figure below illustrates the components schematically:
+
+\image html architecture_overview.png "CrashFix Components"
+
+\section crashfix_service CrashFix Service (Daemon)
+
+The daemon component is a server-side component. The term server-side 
+means this component installs and runs on your server infrastructure 
+and processes requests from web application.
+
+The CrashFix service processes incoming crash reports and debugging 
+symbol files. Also, the service's work is to send pending mail messages 
+to CrashFix users.
+
+The only component interacting with CrashFix service is the web application. 
+CrashFix users can not access the service directly, they can access the web application only.
+
+\section crashfix_webapp CrashFix Web Application
+
+The web application is a server-side component, too. It resides on the same 
+machine the service resides.
+
+The web application is a PHP website that allows CrashFix users to perform 
+administrative and daily usage tasks through a web browser application, such 
+as Internet Explorer, Mozilla Firefox or Google Chrome. The web application 
+allows multiple users to access CrashFix concurrently, browse and manage crash 
+reports, debugging symbols, bugs and other.
+
+\section CrashFix Debugging Symbol Uploader Win32 Application
+
+The uploader application is a Windows application. It is a client-side 
+component. The purpose of uploader is to allow CrashFix users to upload 
+debugging symbols to CrashFix server web application. Debugging symbols 
+are required to correctly recover stack traces from incoming crash reports. 
+Typically a CrashFix user who builds the client application may run the 
+uploader tool to upload generated debugging symbols to CrashFix web application.
+
+The uploader application exists in two flavors: as GUI application and as 
+a console application. The GUI application is more easy to use. The console 
+application, however, is applicable for automating symbol uploading procedure.
+
+\section Crash Reporting Library
+
+Another important client-side component is the crash reporting library. 
+On the figure above this component is denoted by the dashed rectangle. The 
+crash reporting library should be shipped with your client application. When 
+a critical error occurs in the client application on end user's machine, this 
+library sends crash reports from your client application to CrashFix server 
+over local area network or over the Internet.
+
+The crash reporting library component is not a part of CrashFix distribution, 
+this is a third-party software downloaded separately and distributed under 
+a separate license.
+
+CrashFix currently supports one such a library called CrashRpt. CrashRpt is a 
+free and open-source library distributed under the New BSD License. It can be 
+used in both commercial and open-source applications, with or without 
+modifications. More the details on integration with CrashRpt library can be 
+found on \ref client_integration page.
+
+Further reading: \ref installation. 
+
+*/

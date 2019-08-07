@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DebugInfo">
+      <UniqueIdentifier>{2e5df9ea-2aaf-4d97-bedb-18b6110d602d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{14966b21-5616-433f-b119-92f68a8f8df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CrashReport">
+      <UniqueIdentifier>{cae55536-df2a-4929-9b7c-b30207b9b855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileUpload">
+      <UniqueIdentifier>{53ead365-ac78-4cb9-a2ae-f5238322933e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BasePdbStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="FileMapping.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="MsfFile.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="MsfStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbCache.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbCompilandStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbDebugInfoStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbFPOStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbGSIStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbHeadersStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbLinkInfoStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbPSGSIStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbReader.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbSectionMapStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbSymbol.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbSymbolStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbSymLexicalScope.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PdbTypeInfoStream.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PeReader.cpp">
+      <Filter>DebugInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="base64.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="FileFinder.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="RegProfile.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="strconv.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandProcessor.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="CrashDescReader.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="CrashReportReader.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="DbgHelpDumpWriter.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniDumpReader.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniDumpWriterImpl.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="Outputter.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="StackWalker.cpp">
+      <Filter>CrashReport</Filter>
+    </ClCompile>
+    <ClCompile Include="AssyncNotification.cpp">
+      <Filter>FileUpload</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpRequestSender.cpp">
+      <Filter>FileUpload</Filter>
+    </ClCompile>
+    <ClCompile Include="Uploader.cpp">
+      <Filter>FileUpload</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BasePdbStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="FileMapping.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="MsfFile.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="MsfStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbCache.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbCompilandStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbDebugInfoStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbFPOStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbGSIStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbHeadersStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbLinkInfoStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbPSGSIStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbReader.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbSectionMapStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbStreamStruct.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbStruct.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbSymbol.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbSymbolStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbSymLexicalScope.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PdbTypeInfoStream.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PeReader.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PeStruct.h">
+      <Filter>DebugInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="base64.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="CritSec.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFinder.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="LibDumperVersion.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="RegProfile.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="strconv.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeDefs.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandProcessor.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="CrashDescReader.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="CrashReportReader.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="DbgHelpDumpWriter.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="DumpStruct.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniDumpReader.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniDumpWriter.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniDumpWriterImpl.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="Outputter.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="StackWalker.h">
+      <Filter>CrashReport</Filter>
+    </ClInclude>
+    <ClInclude Include="AssyncNotification.h">
+      <Filter>FileUpload</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpRequestSender.h">
+      <Filter>FileUpload</Filter>
+    </ClInclude>
+    <ClInclude Include="Uploader.h">
+      <Filter>FileUpload</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

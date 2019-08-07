@@ -1,0 +1,91 @@
+/*!
+
+\page users_and_roles Users and Roles
+
+In the scope of crash report analysis process, we may imagine the following roles 
+for CrashFix users:
+
+<ul>
+    <li>
+        Administrator (project manager) typically adds users to project and
+        controls what they do. The manager may want to get regular statistics reports
+        to see how many crash reports have been received and how many bugs have been fixed.
+    </li>
+    <li>Developers typically may want to upload debugging symbols, 
+        browse incoming crash reports and collections, and open
+        bugs. The developers are the only people who can do this (QA can not), 
+        because the developers are the only people who understand the client application's code.
+        Developers then try to fix open bugs and change bug status appropriately.
+    </li>
+    <li>
+        Quality assurance engineers (QA) typically have no idea how the code works, so they can not open new
+        bugs (developers will do that). But, QA can try to reproduce a bug on their machine
+        and, if the bug can be reproduced, verify that the bug has been fixed by a developer.
+    </li>
+    <li>
+        Guests (or limited users) are the people who may want to browse crash reports,
+        crash groups and bugs (but not to make any changes).
+    </li>			
+</ul>
+</p>
+
+\section user_groups User Groups
+
+Each CrashFix user belongs to certain user group. There are four standard groups:
+Admin (Administrators), Dev (Developers), QA (Quality Assurance) and Guest (Limited Users).	
+These standard groups represent typical roles in a software project.	
+
+To manage user groups you need to log in under the root user or under another user
+having permission to access Administer panel. After you have logged in, 
+click the <i>Administer</i> button on the Main menu.
+Administer panel appears. Click the <i>Groups</i> item on the top menu.
+The standard user groups appear (shown in the figure below).
+
+\image html admin_groups.png "Admin groups"
+
+Standard groups can be modified and new groups can be created on demand.
+
+A group can be disabled. Users belonging a disabled group can not log into
+the web application.
+
+Each user belonging certain group is assigned some permissions. For example, 
+to see what permissions are set for the Admin group, click the group name.
+The group details page appears (shown in the figure below).
+
+\image html admin_groups_admin.png "Admin groups admin"
+
+As we can see, the root user has all permissions, including the permission
+to access Administer panel. 
+
+Along with permissions, custom UI preferences may be set for all users in the group. 
+For example, a developer (Dev) user may want to see open bugs assigned to him,
+while a quality assurance engineer (QA) may want to see bugs ready for verification.
+This preference is controlled by the <i>Default Bug Status Filter</i> option on the group
+details page.
+
+\section users Users
+
+To manage users you need to log in under the root user or another user
+having permission to access Administer panel.
+
+After you have logged in, click the <i>Administer</i> button on the Main menu.
+Admin panel appears (shown in the figure below). 
+
+\image html admin_users.png "Admin users"
+
+By default, there is the root user only. You may want to add more users. In order
+to do this, click the <i>Add New User</i> button. The <i>Add New User</i>
+page appears (shown in the figure below).
+
+\image html admin_add_new_user.png "Add new user"
+
+In the appeared form, enter new user name, choose what group the user
+should belong and enter user's E-mail address. Then press the <i>Create</i> button.	
+
+Next, an E-mail message is sent to user's E-mail address you have entered. The E-mail
+message contains account activation link. The new user should open the link in his
+browser for the first login and password change.
+
+Further reading: \ref projects.
+
+*/

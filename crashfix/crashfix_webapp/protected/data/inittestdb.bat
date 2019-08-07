@@ -1,0 +1,1 @@
+..\yiic migrate up --connectionID=dbTest --migrationTable=test_migration

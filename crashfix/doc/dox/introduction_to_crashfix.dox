@@ -1,0 +1,15 @@
+/*!
+
+\page introduction_to_crashfix Introduction to CrashFix
+
+This section covers the following topics:
+
+- \subpage getting_started Getting Started page describes what CrashFix is, its mission and main features.
+
+- \subpage architecture_overview Architecture Overview page tells about the server-side and client-side components CrashFix consists of.
+
+- \subpage faq Frequently Asked Questions page contains questions and answers about CrashFix installation and troubleshooting.
+
+- \subpage changelog Change Log page describes what's new in the latest version of CrashFix. 
+
+*/

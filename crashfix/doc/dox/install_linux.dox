@@ -1,0 +1,443 @@
+/*!
+\page install_linux Installing CrashFix in Linux
+
+CrashFix software contains the following components: CrashFix service (daemon), 
+CrashFix web application and CrashFix debug info uploader application. The first 
+two components (daemon and web application) work in Linux, and the third component
+(uploader) works in Windows.
+
+This page covers the following topics:
+   
+ - \ref sysreq_linux
+ - \ref linux_install_apache_php_db
+ - \ref linux_install_webapp
+ - \ref linux_install_service
+ - \ref linux_install_uploader
+ 
+\section sysreq_linux System Requirements
+
+In order to install and use CrashFix service and web application, you need the following 
+system requirements to be satisfied:
+
+ - Linux operating system.
+ - Apache HTTP Server 2.2.
+ - PHP 5.3 or later (plus extensions PDO, GD).
+ - Database (MySQL).
+ - 2 GB of free disk space (to store crash reports and symbols).
+ - Network connection (either LAN or Internet).
+
+In general, it is recommended that you use a popular and well supported 
+Linux distribution like Ubuntu Linux or Red Hat Linux (either x86 or amd64).  
+If you plan to install CrashFix on Ubuntu, it is recommended to use an LTS
+(long term support) release of Ubuntu Server, for example Ubuntu Server 12.04 LTS
+or Ubuntu Server 14.04 LTS. Non-LTS releases are not recommended to use, because
+of their short support period.
+
+In order to install and use CrashFix debug info uploader tool, you need the following 
+system requirements to be satisfied:
+		
+ - Windows operating system (Windows Vista or later).
+ - 5 MB of free disk space.
+ - Network connection (either LAN or Internet to upload files via network).
+
+\section linux_install_apache_php_db Installing Apache + PHP + Database
+
+You may read this section if you do not have Apache HTTP server, PHP 
+engine and a database installed. This section provides instructions on 
+how to install Apache, PHP and an appropriate database (MySQL).
+If you already have these installed, you may skip this section and refer 
+directly to the <a href="#webapp">Installing CrashFix Web Application</a> section.
+
+\subsection linux_install_apache_php Installing Apache and PHP
+
+<b>Debian or Linux Ubuntu</b>
+
+From a command shell, run the following commands:
+
+<pre>
+sudo apt-get install apache2
+
+sudo apt-get install php5
+
+sudo apt-get install libapache2-mod-php5 php5-gd
+</pre>
+
+The commands above download from repository and install the latest available
+versions of Apache HTTP Server, PHP engine and PHP extension modules for Apache.
+
+Your web files will now be located in <i>/var/www</i> directory.
+
+<b>CentOS or Red Hat Linux</b></p>
+
+From a command shell, run the following commands:
+
+<pre>
+sudo yum install httpd
+
+sudo yum install php php-gd php-dom
+</pre>
+
+The commands above download from repository and install the latest available
+versions of Apache HTTP Server, PHP engine and PHP extension module for Apache.
+
+Next, run the following commands to add Apache HTTP Server to autorun and
+start it:
+
+<pre>
+sudo chkconfig --level 235 httpd on
+
+sudo service httpd start
+</pre>
+
+Your web files will now be located in <i>/var/www/html</i> directory.
+
+\subsection linux_install_db Installing a Database
+
+<b>Debian or Linux Ubuntu</b>
+
+In order to install MySQL database, type the following:
+
+<pre>
+sudo apt-get install mysql-server
+
+sudo apt-get install mysql-client
+
+sudo apt-get install php5-mysql
+</pre>
+
+The commands above install MySQL server component, MySQL client component and
+MySQL extension module for PHP, respectively. 
+
+<b>CentOS or Red Hat Linux</b>
+
+In order to install MySQL database, type the following:
+
+<pre>
+sudo yum install mysql-server 
+
+sudo yum install mysql
+
+sudo yum install php-mysql
+</pre>
+
+The commands above install MySQL server component, MySQL client component and
+MySQL extension module for PHP, respectively. 
+
+Run the following commands to add MySQL server to autostart and
+start the server:
+
+<pre>
+sudo chkconfig --level 235 mysqld on
+
+sudo service mysqld start
+</pre>
+
+\subsection linux_configure_mysql Configuring the MySQL Database Server
+
+<i>Note:</i> You may skip this section if you use SQLite database.</p>
+
+During the installation of the MySQL database server, a root user is created. 
+You need to create a MySQL root user password. You will need the password for 
+creating other MySQL server users.
+
+To connect to the MySQL server enter the following command:
+
+<pre>
+mysql -u root -p
+</pre>
+
+The MySQL command prompt appears. At the command prompt enter the following 
+command and press Enter (in the command below, replace the &lt;your_password&gt; 
+placeholder with some password):
+
+<pre>
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('&lt;your_password&gt;');
+</pre>
+
+If the command is executed successfully, the following message is displayed:
+
+<pre>
+Query OK, 0 rows affected (0.00 sec)
+</pre>
+
+Now we need to create a new database schema that will store CrashFix tables.
+To do this, type the following:
+
+<pre>
+CREATE SCHEMA crashfix;
+</pre>
+
+The command above creates empty schema that we will populate later.
+
+Next, we want to create another database user named <i>crashfix</i> 
+that will be used by CrashFix web 
+application for connecting to database. To create the user, type the following
+(in the command below, replace the &lt;your_password&gt; placeholder with some
+password):
+
+<pre>
+GRANT ALL PRIVILEGES ON crashfix.* TO 'crashfix'@'localhost' IDENTIFIED BY '&lt;your_password&gt;';
+</pre>
+
+The command above creates the user named 'crashfix' and grants the user
+all privileges on 'crashfix' database schema.
+
+Finally, type 'quit' to exit the MySQL prompt.
+
+\subsection linux_check_webserver_install Checking Web Server Installation
+
+After you set up your web server, check that it is installed correctly and 
+that your Apache server recognizes your PHP engine. 
+
+To check that Apache and 
+PHP are installed and running, create <i>phpinfo.php</i> file in Apache document 
+root directory.
+
+<i>Note:</i> Typically, the Apache document root directory is <i>/var/www</i>
+(in Debian or Linux Ubuntu) or <i>/var/www/html</i> (in CentOS or Red Hat Linux).
+
+In the <i>phpinfo.php</i> file, enter the PHP method <i>phpinfo()</i> as follows:
+
+<pre>
+&lt;?php 
+    phpinfo(); 
+?&gt;
+</pre>	
+
+    Open the file in your browser. 
+    The standard PHP information page should display. 
+
+\image html phpinfo.png "PHP information page"
+
+\section linux_install_webapp Installing CrashFix Web Application
+
+CrashFix web application is a web site written in PHP. Using the web
+application, CrashFix users may access CrashFix and perform administrative and
+daily usage tasks.
+
+At this point, you should have Apache HTTP server + PHP + database 
+(MySQL or SQLite) installed. 
+
+Download CrashFix web application archive from our <a href="https://sourceforge.net/projects/crashfix/files/">Download</a> page.
+
+Unpack the archive: 
+
+<pre>
+tar xzvf crashfix-webapp-1.0.x.tar.gz
+</pre>	
+
+Next, move the files to web server's document root directory: 
+
+<i>Note:</i> Typically, the document root is <i>/var/www</i> directory (in Debian or Linux Ubuntu) 
+or <i>/var/www/html</i> directory (in CentOS or Red Hat). Below,
+we denote the document root directory as <i>DOCUMENT_ROOT%</i>,
+and you should replace this placeholder with the actual directory path.
+
+<pre>
+sudo mv crashfix DOCUMENT_ROOT
+</pre>
+
+If everything is OK, you
+should have CrashFix files in <i>%DOCUMENT_ROOT%/crashfix</i> directory:
+
+<pre>
+%DOCUMENT_ROOT%/crashfix
+    index.php       | CrashFix web application entry script
+    assets/         | The directory where temporary resources (like images and CSS files) will be published
+    protected/      | This directory content is protected from direct access by .htaccess file
+        ...
+        config/     | This directory contains configuration files
+        data/       | This directory will contain crash reports and debug info files
+        ...
+        runtime/    | This directory will contain logs and temporary files
+</pre>
+
+Edit the <i>%DOCUMENT_ROOT%/crashfix/protected/config/user_params.ini</i> config file and
+specify the correct database connection string, login and password. For additional
+information on config file fields and their meaning, please refer to
+comment lines that can be found in the config file.
+
+<i>Note:</i> To edit the config file, you can use Midnight Commander editor or another editor. 
+For example, the commands below install Midnight Commander (in Linux Ubuntu) and open the config file
+in it. When ready, press F10 to quit the editor.
+    
+<pre>
+sudo apt-get install mc
+
+sudo mcedit %DOCUMENT_ROOT%/crashfix/protected/config/user_params.ini
+</pre>
+
+\subsection linux_file_perms Setting File and Directory Permissions
+
+You should configure file and directory permissions in order to make CrashFix
+web application work properly.
+
+From a command shell, run the following command:
+
+<pre>
+sudo chmod -R 0755 %DOCUMENT_ROOT%/crashfix
+</pre>
+
+The command above makes <i>%DOCUMENT_ROOT%/crashfix</i> directory, its subdirectories and 
+files readable and writable for Apache webserver.
+
+The following command sets Apache webserver user to be the owner of 
+<i>%DOCUMENT_ROOT%/crashfix</i> directory and its subdirectories (typically, Apache webserver
+runs as 'www-data' user of 'www-data' group in Debian or Linux Ubuntu or as 'apache' user of
+'apache' group in CentOS or Red Hat Linux). If your system is Debian or Linux Ubuntu, type 
+the following command:
+
+<pre>
+sudo chown -R www-data:www-data %DOCUMENT_ROOT%/crashfix
+</pre>
+
+If your system is CentOS or Red Hat Linux, type the following:
+
+<pre>
+sudo chown -R apache:apache %DOCUMENT_ROOT%/crashfix
+</pre>
+
+Now, you can try to open the CrashFix web application in your web browser.
+To do this, type 'http://localhost/crashfix/index.php' in your browser's
+navigation bar and press Enter. Typically, you should see the following
+in your browser (see the image below):
+
+\image html webapp_login_page.png "Webapp login page"
+
+\subsection linux_install_crashfix_db Initializing CrashFix Database
+
+And at last, CrashFix database tables must be created and initialized before using the 
+web application. This is performed by the database migration mechanism.
+To initialize the database tables, run the following command:
+
+<pre>
+sudo php %DOCUMENT_ROOT%/crashfix/protected/yiic.php migrate
+</pre>
+
+When prompted, press 'y' and then press 'Enter'. If everything is OK, the
+following message appears:
+
+<pre>
+Migrated up successfully.
+</pre>
+
+Congratulations! Your CrashFix web application is now installed!
+
+\section linux_install_service Installing CrashFix Service
+
+CrashFix service is a daemon that persists in background and processes 
+incoming crash report files.
+
+First of all, download an appropriate CrashFix package (RPM or DEB) from 
+our Download 
+page. If your server is running Debian or Linux Ubuntu, you should download DEB 
+package. If your server is running CentOS or Red Hat, you should download RPM
+package. 
+
+When the package has been downloaded, install it by typing the following 
+(for DEB package):
+
+<pre>
+sudo dpkg -i &lt;package_name&gt;
+</pre>
+
+or (for RPM package):
+
+<pre>
+sudo yum install &lt;package_name&gt;
+</pre>
+
+In both the cases above, you should replace the <i>&lt;package_name&gt;</i> 
+placeholder with the file name you have downloaded.
+
+If everything is OK, you should have the following directories and files:
+
+<pre>
+/usr/sbin/crashfixd           | The CrashFix daemon executable file
+/etc/crashfix/crashfixd.conf  | The CrashFix daemon configuration file
+/etc/init.d/crashfixd.sh      | The CrashFix shell script
+/var/log/crashfix/            | The directory where CrashFix daemon places its log files
+/var/run/crashfix/            | The directory where CrashFix daemon places its PID-file
+</pre>
+
+Edit the config file <i>/etc/crashfix/crashfixd.conf</i>. For additional
+information on config file fields and their meaning, please refer to comment lines in
+the config file.
+
+Now we want to add CrashFix service to autostart (this will automatically
+start CrashFix service on system boot). 
+
+If your system is Debian or Linux Ubuntu, type:
+
+<pre>
+sudo update-rc.d -f crashfixd defaults
+</pre>
+
+If your system is CentOS or Red Hat Linux, type:
+
+<pre>
+sudo chkconfig --level 235 crashfixd on
+</pre>
+
+Next, start the CrashFix service by typing the following command: 
+
+<pre>
+sudo service crashfixd start
+</pre>
+
+The expected output of the last command is the following:
+
+<pre>
+Checking if crashfixd process exists...
+Could not read PID file /var/run/crashfixd.pid: No such file or directory
+Forked the CrashFix daemon process: pid = &lt;pid&gt.
+</pre>
+
+To ensure CrashFix service is running, type the following command:
+
+<pre>
+ps aux | grep crashfixd
+</pre>
+
+The command above prints the list of processes having 'crashfix' in process name.
+The expected output is the following (in the output below, some unimportant characters were 
+omitted and replaced by the ... placeholder):
+
+<pre>
+root     &lt;pid&gt;  ... /usr/sbin/crashfixd --start -c /etc/crashfix/crashfixd.conf
+root     &lt;pid&gt;  ... /usr/sbin/crashfixd --start -c /etc/crashfix/crashfixd.conf
+</pre>
+
+There should be two processes launched under the root user: 
+the daemon process and the monitoring process.
+The monitoring process is a process whose purpose is to check daemon's status 
+periodically and restart the daemon on critical errors.
+
+\section linux_install_uploader Installing CrashFix Debug Info Uploader Tool
+
+CrashFix debug info uploader tool is a Windows application allowing
+    users to upload their debug info (symbol) files to CrashFix server.
+
+Download the CrashFix uploader tool ZIP archive from our Download 
+    page. Then unpack the archive to a directory of your choice. 
+
+    You should have the following executable files in the directory:
+
+ - <i>uploader_gui.exe</i> - GUI version of the tool
+ - <i>uploader.exe</i> - console version of the tool
+
+    To get help on available uploader commands, type the following:
+
+<pre>
+uploader.exe --help
+</pre>	
+
+<i>Note:</i> By default, PHP doesn't allow to upload large files (larger than 2MB). 
+In order to upload large symbol files, 
+you may need to edit your <i>php.ini</i> configuration file and modify the 
+<i>post_max_size</i> and <i>upload_max_filesize</i> parameters. Setting these
+with 100MB would typically be sufficient (if you plan to upload very large PDB files up to 1 GB in size,
+than better set these with 1024MB). Do not forget to restart your Apache webserver
+after editing the config file.
+
+*/

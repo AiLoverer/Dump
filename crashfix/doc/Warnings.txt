@@ -1,0 +1,47 @@
+Warning: source ..\processing\scripts is not a readable file or directory... skipping.
+Warning: source ..\reporting\scripts is not a readable file or directory... skipping.
+Warning: source ../include is not a readable file or directory... skipping.
+D:/Oleg/Projects/crashfix/doc/dox/bugs.dox:38: Warning: found subsection command outside of section context!
+D:/Oleg/Projects/crashfix/doc/dox/bugs.dox:39: Warning: explicit link request to 'NN' could not be resolved
+D:/Oleg/Projects/crashfix/doc/dox/changelog.dox:39: Warning: Found unknown command `\Program'
+D:/Oleg/Projects/crashfix/doc/dox/changelog.dox:39: Warning: Found unknown command `\CrashFix'
+D:/Oleg/Projects/crashfix/doc/dox/changelog.dox:39: Warning: Found unknown command `\crash_reports'
+D:/Oleg/Projects/crashfix/doc/dox/client_integration.dox:3: Warning: unable to resolve reference to `architecture' for \ref command
+D:/Oleg/Projects/crashfix/doc/dox/collections.dox:55: Warning: explicit link request to 'NN' could not be resolved
+D:/Oleg/Projects/crashfix/doc/dox/crash_reports.dox:38: Warning: explicit link request to 'NN' could not be resolved
+D:/Oleg/Projects/crashfix/doc/dox/crash_reports.dox:47: Warning: Found unknown command `\subection'
+D:/Oleg/Projects/crashfix/doc/dox/debug_info.dox:19: Warning: unable to resolve reference to `uploader_tool' for \ref command
+D:/Oleg/Projects/crashfix/doc/dox/debug_info.dox:22: Warning: found subsection command outside of section context!
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:62: Warning: unable to resolve reference to `tutorials' for \ref command
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:87: Warning: Found unknown command `\Program'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:87: Warning: Found unknown command `\CrashFix'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:87: Warning: Found unknown command `\conf'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:98: Warning: Found unknown command `\Program'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:98: Warning: Found unknown command `\CrashFix'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:98: Warning: Found unknown command `\logs'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:119: Warning: Found unknown command `\Program'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:119: Warning: Found unknown command `\Apache'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:119: Warning: Found unknown command `\htdocs'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:119: Warning: Found unknown command `\crashfix'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:143: Warning: Found unknown command `\wamp'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:143: Warning: Found unknown command `\bin'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:143: Warning: Found unknown command `\apache'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:143: Warning: Found unknown command `\apache2'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:143: Warning: Found unknown command `\bin'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:143: Warning: Found unknown command `\php'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:144: Warning: Found unknown command `\wamp'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:144: Warning: Found unknown command `\bin'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:144: Warning: Found unknown command `\php'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:144: Warning: Found unknown command `\php5'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:144: Warning: Found unknown command `\php'
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:166: Warning: found </b> tag without matching <b>
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:188: Warning: found </b> tag without matching <b>
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:189: Warning: found </b> tag without matching <b>
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:218: Warning: Unsupported xml/html tag <your_dir_name> found
+D:/Oleg/Projects/crashfix/doc/dox/faq.dox:223: Warning: Unsupported xml/html tag <port> found
+D:/Oleg/Projects/crashfix/doc/dox/first_login.dox:19: Warning: Found unknown command `\localhost'
+D:/Oleg/Projects/crashfix/doc/dox/install_windows.dox:71: Warning: Unsupported xml/html tag <your_password> found
+D:/Oleg/Projects/crashfix/doc/dox/install_windows.dox:75: Warning: Unsupported xml/html tag <your_password> found
+D:/Oleg/Projects/crashfix/doc/dox/upgrade_windows.dox:32: Warning: found </div> tag without matching <div>
+D:/Oleg/Projects/crashfix/doc/dox/uploader_tool.dox:18: Warning: found subsection command outside of section context!
+D:/Oleg/Projects/crashfix/doc/dox/uploader_tool.dox:47: Warning: found subsection command outside of section context!

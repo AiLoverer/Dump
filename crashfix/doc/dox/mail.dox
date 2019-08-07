@@ -1,0 +1,32 @@
+/*!
+
+\page mail Mail
+
+The Mail tab of Administer page allows to browse the E-mail messages
+sent by CrashFix web application recently. This can be used by an 
+administrator for monitoring and troubleshooting E-mail delivery problems.
+
+You need to log in under the root user or under another user
+having permission to access Administer panel. After you have logged in, 
+click the <i>Administer</i> button on the Main menu.
+Administer panel appears. Click the <i>Mail</i> item on the top menu.
+The <i>Mail</i> page appears (shown in the figure below).
+
+\image html admin_email.png "Administer Mail"
+
+On the appeared page, you can see the list of E-mail messages sent recently,
+their subject, recipient, creation time, sent time and status. 
+You can click a message to view it in details (see figure below).
+
+\image html admin_email_view.png "View Email"
+
+On the appeared page, you can see the E-mail message subject,
+recipient, status and message body text.     
+
+You are able to send the message again by clicking the <i>Resend Mail</i> button.
+You can also permanently delete the message by clicking the <i>Delete Mail</i>
+button.
+
+Further reading: \ref logging.
+
+*/

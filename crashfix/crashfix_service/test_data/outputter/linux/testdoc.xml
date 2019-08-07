@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DocumentRoot>
+    <FirstSection>
+        <Prop1_32>Value 1</Prop1_32>
+        <Property2>Value &amp; 2</Property2>
+    </FirstSection>
+    <Table2324>
+        <Row>
+            <Cell val="Cell1" />
+            <Cell val="Cell2" />
+            <Cell val="Cell3" />
+        </Row>
+        <Row>
+            <Cell val="Cell4" />
+            <Cell val="Cell5" />
+            <Cell val="std::string data(x+y=0);" />
+        </Row>
+    </Table2324>
+</DocumentRoot>

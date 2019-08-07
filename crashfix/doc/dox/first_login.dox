@@ -1,0 +1,38 @@
+/*!
+
+\page first_login First Login
+
+After you install CrashFix web application and service components, as described on
+\ref installation page, you typically should log in using standard <i>root</i> account. 
+
+In order to do this, enter the URL of your CrashFix web application's entry script
+into web browser's navigation bar. The CrashFix <i>Login</i> page appears 
+(shown in the figure below).
+
+\image html root_login.png "Login page"
+
+In the appeared <i>Sign in</i> form, enter 'root' into the <i>Username</i> field and
+'rootpwd' into the <i>Password</i> field. Press the <i>Login</i> button.
+
+The <i>Enter New Password</i> page appears where 
+you should enter your new password and press the <i>Submit</i> button.	
+
+Next, <i>Users</i> tab appears (shown on the figure below). Here you can see the details of root user.
+You should change root's E-mail address (which is <i>test@localhost</i> by default)
+by pressing the <i>Update User</i> button.
+
+\image html view_root_profile.png "View Root Profile"
+
+The root user is a standard user belonging to <i>Admin</i> user group.
+Users from this group are granted permissions to perform
+any actions in the web application. For example, root user can create
+new users, create new projects and assign project roles to certain users.
+The root user can also browse the CrashFix daemon's status and recent operations.
+
+For more information on how to manage users, you can refer to \ref users_and_roles
+page.
+
+For more information on how to manage projects, you can refer to \ref projects page.
+
+For more information on how to browse CrashFix daemon's status, you can refer to \ref daemon page.
+*/

@@ -1,0 +1,210 @@
+/*! 
+
+\page changelog Change Log
+
+<h4>CrashFix v.1.0.4. Release date: 29 March 2013.</h4>
+
+<ul class="changelog-list">
+    <li>
+        New: Added an ability to define custom crash report collection names. Typically, a
+        collection name is generated automatically based on stack trace information, but
+        now a client application may define custom collection name by specifying custom 
+        property named 'CollectionId'.        
+    </li>    
+    <li>
+        New: Ability to relax exact build age match requirement. If this option is enabled, CrashFix loads
+        the symbol file even if its build age doesn't match exactly. This option is disabled by default, and
+        is activated by unsetting the 'Require exact build age when loading debugging symbols' check box on 
+        Administer->Projects->ProjectName page.
+    </li>    
+    <li>
+        New: improved default search filter on Collections page. Now the filter displays
+        nonempty collections with bugs unassigned or open, hiding all empty collections.
+    </li>    
+    <li>
+        New: added Distinct IPs column for Collections page. The column can be used to see how many 
+        different IP addresses have contributed into the certain collection, allowing to 
+        concentrate on the most widespread collections.
+    </li>    
+    <li>
+        New: added 'Reprocess All Reports' and 'Reprocess Selected Reports' buttons
+        to Crash Reports page. This make it possible to process multiple crash reports
+        at the same time, if desired.
+    </li>    
+    <li>
+        New: closed bug details header is now displayed using gray color making it easier to visually
+        determine if the bug is closed or not.
+    </li>    
+    <li>
+        New: CrashFix service (Windows version) now supports crash reporting. If the service
+        crashes, it will write a crash report to <i>crash_reports</i> subdirectory of
+        service's installation directory (typically to <i>C:\Program Files (x86)\CrashFix\crash_reports</i>).
+    </li>    
+    <li>
+        Fix: CrashFix service crashes when processing a stack trace having very long
+        symbol names.
+    </li>
+    <li>
+        Fix: Too small font and possible PHP error in OS version distribution widget on Digest page when 
+        there are many OS versions available.
+    </li>
+    <li>
+        Fix: PHP error in Debug Info Uploads widget on Digest page when 
+        there are many symbol files uploaded.
+    </li>
+    <li>
+        Fix: PHP errors in CrashFix web application if installing it to a system having
+        PHP 5.4.
+    </li>
+    <li>
+        Fix: Debug info uploader tool could by mistake include folder names to the 
+        list of symbol files for upload.
+    </li>
+</ul>
+
+<h4>CrashFix v.1.0.3. Release date: 8 February 2013.</h4>
+
+<ul class="changelog-list">
+    <li>
+        New: improved the usability of menu on top of crash report view (Summary, Files, Screenshots, ...). Now
+        certain menu item is grayed if crash report does not contain data of such type. For example,
+        Screenshots item is displayed in gray if there are no screenshot files in crash report.
+    </li>
+    <li>
+        New: added Videos tab on crash report view page. This allows user to 
+        browse video files if they are contained in error report.
+    </li>    
+    <li>
+        New: improved CrashFix uploader's --help command (added usage examples); 
+        added new option -v (verbose output).
+    </li>
+    <li>
+        New: added 'PDB GUID+Age' column for Modules tab of a crash report view.
+        This may help when its needed to match a module with a symbol file.
+    </li>
+    <li>
+        New: improved layout of Digest page widgets (more space for geo location distribution widget,
+        OS version distribution widget and crash report version distribution widget).
+    </li>
+    <li>
+        New: old temporary files that were not removed from <i>/protected/runtime/</i> directory for
+        some reason are now cleaned automatically.
+    </li>
+    <li>
+        Fix: temporary files are not removed by CrashFix service when processing
+        minidumps from crash reports. 
+    </li>    
+    <li>
+        Fix: crash reports having no minidump file or having no exception information
+        inside of the minidump file are treated as Invalid. Now they are put inside of
+        'Reports without Exception Info' collection.
+    </li>
+    <li>
+        Fix: the list of projects in drop list on the Digest page is not sorted. Now it is sorted
+        alphabetically.
+    </li>
+    <li>
+        Fix: at page Home -> Crash Reports, clicking the Upload New File link results in PHP error.
+    </li>
+    <li>
+        Fix: in crash report Summary view, OS bitness is always 64-bit, even if the OS is actually 32-bit.
+    </li>
+    <li>
+        Fix: if daemon crashes when processing crash report, crash report view has empty error message.
+    </li>
+    <li>
+        Fix: when processing crash report stack trace, module names are assigned to stack frames incorrectly; 
+        that can cause incorrect behavior and PHP errors.
+    </li>
+    <li>
+        Fix: setting zero as project's disk quota causes PHP error (divizion by zero). Now zero quotas are 
+        also allowed (setting zero as disk quota now means unlimited disk usage).
+    </li>
+    <li>
+        Fix: PDB not found problem if first processing a crash report, then upload PDB file for that crash
+        report and then process the crash report again.
+    </li>
+    <li>
+        Fix: cannot remove debug info files from disk when they are locked by daemon's cache.
+    </li>
+</ul>
+
+<h4>CrashFix v.1.0.2. Release date: 12 December 2012.</h4>
+
+<ul class="changelog-list">
+    <li>
+        New: improved stability and memory consumption of CrashFix service on 
+        large symbol files.
+    </li>
+    <li>
+        New: updated <i>crashfixd.conf</i> file and added new parameters 
+        <i>MAX_THREAD_COUNT</i> (defines count of worker threads),
+        <i>MAX_DEBUG_INFO_CACHE_SIZE</i> (defines count of symbols files that can be stored in cache),
+        <i>MAX_MEM_USAGE_MB</i> (defines maximum memory usage for the service).
+    </li>
+    <li>
+        New: an ability to temporarily lock batch import of crash reports and
+        debug info files by placing the <i>importlock</i> file to the 
+        <i>%WEB_ROOT%/crashfix/protected/import</i> directory
+    </li>
+    <li>
+        Fix: error 'You are not allowed to perform this action' when several users
+        try to access CrashFix web application at the same time.
+    </li>
+    <li>
+        Fix: incorrect display of statistics widgets on Digest page when uploading
+        many (several hundreds) crash reports at once.
+    </li>
+    
+</ul>
+
+<h4>CrashFix v.1.0.1. Release date: 20 November 2012.</h4>
+
+<ul class="changelog-list">
+    <li>
+        New: wide layout for CrashFix web application. Now the layout is
+        optimized for wide displays.
+    </li>
+    <li>
+        New: added new types of statistics widgets for Digest page: geographic locations
+        distribution, operating system versions distribution, bug statuses distribution.
+    </li>
+    <li>
+        New: added Mail tab to Administer panel. Now administrator can browse E-mail
+        messages sent recently.
+    </li>
+    <li>
+        New: added an ability to perform batch import of crash report files and
+        symbols from a directory. This allows, for example, to upload crash reports
+        to a web server, copy the uploaded files to another machine over SSH and
+        import the files to the CrashFix server installed on that machine, not exposing
+        CrashFix web interface to outside world.
+    </li>    
+    <li>
+        New: added an ability to dump verbose error information to screen by defining
+        <i>CRASHFIX_WEBAPP_DEBUG</i> environment variable. If an error happens and if this variable is defined,
+        CrashFix web application generates verbose information about errors and dumps it
+        to browser window; otherwise a short error message is printed. It is not 
+        recommended to define this variable in production system.
+    </li>    
+    <li>
+        New: better diagnostics of invalid CrashFix service configuration. On user log in,
+        a popup window appears if there are some service configuration errors,
+        allowing administrator to diagnose and fix the problem.
+    </li>        
+    <li>
+        Fix: can not change bug status alone (not changing other fields).
+    </li>    
+    <li>
+        Fix: when processing a crash report CrashFix web application complains 
+        about the e-mail address while it is a valid one.
+    </li>
+    <li>
+        Fix: can not upload symbol files larger than 50 MB. 
+    </li>    
+    <li>
+        Fix: removed some junk messages from CrashFix service's log level 0.
+    </li>
+</ul>
+
+*/

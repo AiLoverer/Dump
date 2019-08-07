@@ -1,0 +1,123 @@
+/*!
+
+\page crash_reports Crash Reports
+
+Crash report files are ZIP archives sent by a client application to CrashFix
+server. Crash reports contain various information intended to help to reproduce
+the crash and eliminate its reason. For example, a crash report may contain
+crash minidump file, crash description XML file, desktop screen shot file(s),
+application log files and other.
+
+To browse crash reports, you need to log in under a user
+having permission to browse crash reports, and the user should be a member 
+of the specified project. After you have logged in, 
+click the <i>Crash Reports</i> button on the Main menu.
+Crash Reports page appears (shown in the figure below).
+
+\image html crash_reports.png "Crash Reports"
+
+The <i>Crash Reports</i> page displays crash report files received for
+the currently selected version of the current project. You may also display
+crash reports for all versions of the current project. To do this, select
+'(all)' from <i>Version</i> drop-down list.
+
+The <i>Crash Reports</i> page contains the search field allowing to filter crash
+report by IP address, E-mail or by problem description entered by a end user
+who sent the report. You may also use advanced search, which provides more
+search options.
+
+Below the search field, there is the actions toolbar, where you may choose an
+action to perform. For example, you may upload a new crash report files manually.
+Or you may select several (or all) crash reports and press the <i>Delete Selected</i>
+button to permanently delete selected items. To perform these actions, your
+user account needs to have a permission to manage crash reports.
+
+At the bottom of the page, you can see some information on total disc space
+occupied by the crash reports and percent of disk quota.
+	
+\section crash_report_details Crash Report Details
+
+To see certain crash report details, click its ID. The <i>View Report #NN</i>
+page appears, where NN is the crash report ID number. The details page is
+shown below.
+
+\image html crash_report_details.png "Crash Report Details"
+
+The crash report details page is organized into several tabs: Summary, Custom Props,
+Screenshots, Threads, Modules and Files. Below, these tabs are briefly described.
+	
+\subection summary_tab Summary Tab
+
+At the top of the Summary tab (shown in the figure above), there is actions toolbar. Using this toolbar, 
+one may open a new bug for this crash report, reset crash report status to Waiting 
+(this will force CrashFix service to process crash report again)
+or permanently delete the crash report.
+
+The Summary tab contains various information on 
+received crash report, such as:
+
+	<ul>
+		<li>the date crash report was created;</li>
+		<li>the date crash report was received;</li>
+		<li>crash report's status (Waiting, Processing, Ready and so on);</li>
+		<li>file size;</li>
+		<li>project name and version the crash report belongs to;</li>
+		<li>collection crash report belongs to;</li>
+		<li>sender information (geographic location, IP address, E-mail);</li>
+		<li>exception information (module name, symbol name, source file name and line number);</li>
+		<li>machine information (CPU architecture and count);</li>
+		<li>and other.</li>
+	</ul>	
+</p>
+
+\subsection Custom Props Tab
+
+<i>Custom Props</i> tab contains custom properties defined by the client application.	
+The tab is shown in the figure below. In the figure, you can see a single custom property
+'VideoCard' having value of 'nVidia GeForce'.
+
+\image html crash_report_custom_props.png "Custom Properties"
+
+\subsection screenshots_tab Screenshots Tab
+
+<i>Screenshots</i> tab contains desktop screen shots made at the moment of crash (see the figure below).	
+The tab actually contains small thumbnails of the desktop screen shots. To open a screen shot
+in its natural size, click the thumbnail.
+
+\image html crash_report_screenshots.png "Screenshots"
+
+\subsection threads_tab Threads Tab
+
+<i>Threads</i> tab contains the list of threads existing in the client application
+at the moment of crash (see the figure below). 
+
+\image html crash_report_threads.png "Threads Tab"
+
+Threads tab is one of the most informative,	because it allows to see the call 
+stack for each thread. To see the call stack, click the <i>View Stack Trace</i> link. 
+For example, the figure below contains call stack for thread 0x193c.
+
+\image html crash_report_thread_stack.png "Thread Stack"
+
+\subsection modules_tab Modules Tab
+
+<i>Modules</i> tab contains the list of modules loaded into the client application
+at the moment of crash (see the figure below). Along with module name, file version
+and timestamp is listed. If matching symbol file was 
+found for certain module, its name displayed as a link. Clicking the link 
+opens symbol file details.
+
+\image html crash_report_modules.png "Modules Tab"
+
+\subsection files_tab Files Tab
+
+<i>Files</i> tab contains the list of files contained in the crash report archive
+(see the figure below). For each file item, its name and description is listed.
+To download a file, click its name. It is also possible to download the whole 
+ZIP archive.
+
+\image html crash_report_files.png "Files Tab"
+
+Further reading: \ref collections.
+
+*/

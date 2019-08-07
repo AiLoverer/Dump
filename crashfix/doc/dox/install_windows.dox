@@ -1,0 +1,194 @@
+/*!
+\page install_windows Installing CrashFix in Windows
+
+CrashFix software contains the following components: CrashFix service, 
+CrashFix web application and CrashFix debug info uploader application.
+
+\section system_requirements System Requirements
+
+In order to install and use CrashFix, you need the following system 
+requirements to be satisfied:
+
+ - Windows operating system (Windows Vista or later).
+ - Apache HTTP Server (version 2.2 or later).
+ - PHP (version 5.3 or later).
+ - Database (MySQL).
+ - 2 GB of free disk space (to store crash reports and symbols).
+ - Network connection (either LAN or Internet).
+
+\section installing_apache_php_db Installing Apache + PHP + Database
+
+You may read this section if you do not have Apache HTTP server, 
+PHP engine and a database installed. This section provides instructions 
+on how to install Apache, PHP and an appropriate database (MySQL). If 
+you already have these installed, you may skip this section and refer 
+directly to the Installing CrashFix Web Application section.
+
+There are a couple of most popular Apache + MySQL + PHP distributions:
+
+ - <a href="http://www.wampserver.com/">WampServer</a>
+
+ - <a href="https://www.apachefriends.org/index.html">XAMPP</a>
+
+Choose one and install it on your Windows server machine. 
+
+\subsection checking_webserver_install Checking Web Server Installation
+
+After you set up your web server, check that it is installed correctly 
+and that your Apache server recognizes your PHP engine.
+
+To check that Apache and PHP are installed and running, create <i>phpinfo.php</i> 
+file in Apache document root directory.
+
+In the <i>phpinfo.php</i> file, enter the PHP method <i>phpinfo()</i> as follows:
+
+\code
+<?php 
+     phpinfo(); 
+?>
+\endcode
+
+Open the file in your browser. The standard PHP information page should display.
+
+\image html phpinfo_win32.png "PHP Info"
+
+\section configuring_mysql Configuring the MySQL Database Server
+
+Now we need to create a new database schema that will store CrashFix tables. 
+To do this, type the following in the MySQL client window:
+
+<pre>
+CREATE SCHEMA crashfix;
+</pre>
+
+The command above creates empty schema that we will populate later. If the command 
+is executed successfully, the following message is displayed:
+
+<pre>
+Query OK, 1 rows affected (0.05 sec)
+</pre>
+
+Next, we want to create a database user named <i>crashfix</i> that will 
+be used by CrashFix web application for connecting to database. To create the user, 
+type the following (in the command below, replace the <i><your_password></i> 
+placeholder with some password):
+
+<pre>
+GRANT ALL PRIVILEGES ON crashfix.* TO 'crashfix'@'localhost' IDENTIFIED BY '<your_password>';
+</pre>
+
+The command above creates the user named 'crashfix' and grants the 
+user all privileges on 'crashfix' database schema.
+
+\section installing_web_app Installing CrashFix Web Application
+
+CrashFix web application is a web site written in PHP. Using the web application, 
+CrashFix users may access CrashFix and perform administrative and daily usage tasks.
+
+At this point, you should have Apache HTTP server + PHP + database (MySQL) installed.
+
+Now, download the CrashFix web application zip archive from our <a href="https://sourceforge.net/projects/crashfix/files/">Download</a> page. Then 
+unpack the archive to web server's document root directory.
+
+<i>Note</i>: Below, we denote the document root directory as <i>DOCUMENT_ROOT</i>, 
+and you should replace this placeholder with the actual directory path.
+
+If everything is OK, you should have CrashFix files in %DOCUMENT_ROOT%/crashfix directory:
+
+<pre>
+%DOCUMENT_ROOT%/crashfix
+    index.php       | CrashFix web application entry script
+    assets/         | The directory where temporary resources (like images and CSS files) will be published
+    protected/      | This directory content is protected from direct access by .htaccess file
+        ...
+        config/     | This directory contains configuration files
+        data/       | This directory will contain crash reports and debug info files
+        ...
+        runtime/    | This directory will contain logs and temporary files
+</pre>
+
+Edit the <i>%DOCUMENT_ROOT%/crashfix/protected/config/user_params.ini</i> config 
+file and specify the correct database connection string, login and password. For 
+additional information on config file fields and their meaning, please refer to 
+comment lines that can be found in the config file.
+
+Now, you can try to open the CrashFix web application in your web browser. To do this, 
+type 'http://localhost/crashfix/index.php' in your browser's navigation bar and press 
+Enter. Typically, you should see the following in your browser (see the image below).
+
+\image html  webapp_login_page_win32.png "Web Application Login Page"
+
+<i>Note</i>: If instead of the page like in figure above you see PHP warning 
+'date(): It is not safe to rely on the system's timezone settings', than you 
+need to edit date.timezone parameter in PHP configuration file php.ini. You need to specify 
+your time zone, for example:
+
+<pre>
+date.timezone = UTC
+</pre>
+
+Do not forget to restart your Apache webserver after editing the config file.
+
+\subsection init_crashfix_db Initializing CrashFix Database
+
+And at last, CrashFix database tables must be created and initialized before using 
+the web application. This is performed by the database migration mechanism. To initialize 
+the database tables, run the following command from DOS shell:
+
+<i>
+php %DOCUMENT_ROOT%/crashfix/protected/yiic.php migrate
+</i>
+
+When prompted, press 'y' and then press 'Enter'. If everything is OK, the following message appears:
+
+<pre>
+Migrated up successfully.
+</pre>
+
+Congratulations! Your CrashFix web application is now installed!
+
+\section installing_service Installing CrashFix Service
+
+CrashFix service is a long-running application that persists in background and 
+processes incoming crash report files.
+
+First of all, download CrashFix service installer (EXE) from our <a href="https://sourceforge.net/projects/crashfix/files/">Download</a> page.
+
+When the installer has been downloaded, run it and follow wizard's instructions.
+
+If everything is OK, you should have the following directories and files:
+
+<pre>
+C:\\Program Files (x86)\\CrashFix\\
+    bin\\crashfixd.exe         | The CrashFix service executable file
+    conf\\crashfixd.conf       | The CrashFix service configuration file
+    logs                      | The directory where CrashFix service places its log files
+</pre>
+
+\section installing_uploader Installing CrashFix Debug Info Uploader Tool
+
+CrashFix debug info uploader tool is a Windows application allowing users to upload 
+their debug info (symbol) files to CrashFix server.
+
+Download the CrashFix uploader tool ZIP archive from our Download page. Then 
+unpack the archive to a directory of your choice.
+
+You should have the following executable files in the directory:
+
+ - <i>uploader_gui.exe</i> - GUI version of the tool
+ - <i>uploader.exe</i> - console version of the tool
+
+To get help on available uploader commands, type the following:
+
+<pre>
+uploader.exe --help
+</pre>
+
+<i>Note</i>: By default, PHP doesn't allow to upload large files (larger than 2MB). 
+In order to upload large symbol files, you may need to edit your php.ini configuration 
+file and modify the post_max_size and upload_max_filesize parameters. Setting these 
+with 100MB would typically be sufficient (if you plan to upload very large PDB files 
+up to 1 GB in size, than better set these with 1024MB). Do not forget to restart your 
+Apache webserver after editing the config file.
+
+*/

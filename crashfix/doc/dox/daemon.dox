@@ -1,0 +1,24 @@
+/*!
+
+\page daemon Daemon
+
+CrashFix service (or daemon) is a process persisting in background and
+processing incoming crash reports and debugging symbol files.
+
+To browse daemon status, you need to log in under the root user or under another user
+having permission to access Administer panel. After you have logged in, 
+click the <i>Administer</i> button on the Main menu.
+Administer panel appears. Click the <i>Daemon</i> item on the top menu.
+The <i>Daemon</i> page appears (shown in the figure below).
+
+\image html admin_daemon.png "Administer Daemon"
+
+On the appeared page, you can see current daemon status message. The expected
+message is 'The daemon is functioning correctly, no problems detected'.
+
+On the <i>Daemon</i> page, you can also see the information on recent daemon 
+operations. The information includes operation description, status and timestamp.
+
+Further reading: \ref mail
+
+*/

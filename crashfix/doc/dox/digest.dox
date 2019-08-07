@@ -1,0 +1,65 @@
+/*!
+
+\page digest Digest
+
+Statistics is important for understanding the progress of crash report analysis.
+For example, statistics may show how many crash reports have been received,
+what are the most popular crash types, how many bugs have been opened and/or fixed,
+what bugs have been modified recently and so on.
+
+CrashFix can present statistics in form of text summaries and diagrams 
+(pie charts or line graphs).
+In order to see the statistics for the currently selected project, 
+click the <i>Digest</i> button on the Main menu.
+Digest page appears (shown in the figure below).
+
+\image html digest.png "Digest"
+
+You may display statistics for the currently selected version of the current project,
+or you may display statistics for all versions of the current project. To display
+statistics for all versions, select '(all)' from the <i>Version</i> drop-down list.
+
+The following types of statistics are presented:
+
+	<ul>
+		<li>
+			<b>Crash Report Uploads.</b> This diagram display how many crash reports
+			have been received for the current project. You can show uploads for
+			the last week, month or year.
+		</li>
+		<li>
+			<b>Crash Report Totals.</b> This widget displays the summary of the
+			total crash report count for the current project and disk space occupied
+			by the crash reports.
+		</li>
+		<li>
+			<b>Crash Report Version Distribution.</b> This pie chart displays
+			how many crash reports received for each version of the current project.
+		</li>
+		<li>
+			<b>Top Crash Collections.</b> This widget displays the most popular
+			crash collections. This is useful to determine what crash collection
+			to analyze first.
+		</li>
+		<li>
+			<b>Bug Dynamics.</b> This graph displays recent bug dynamics: how many
+			bugs are in total, how many of them are open/fixed/verified. You can show bug dynamics for
+			the last week, month or year.
+		</li>
+		<li>
+			<b>Recent Bug Changes.</b> This widget displays ten recent bug changes.
+			A bug change is when someone opens a bug or changes its status or adds
+			a comment to an existing bug.
+		</li>
+		<li>
+			<b>Debug Info Totals.</b> This widget displays the total count of debugging
+			symbol files for the current project and how much disk space they occupy.
+		</li>
+		<li>
+			<b>Debug Info Uploads.</b> This graph displays debugging symbols upload
+			dynamics. You can show the dynamics for	the last week, month or year.
+		</li>
+	</ul>
+
+Further reading: \ref crash_reports
+*/

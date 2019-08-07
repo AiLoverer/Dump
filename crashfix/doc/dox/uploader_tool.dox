@@ -1,0 +1,60 @@
+/*!
+
+\page uploader Debug Info Uploader Tool
+
+The uploader tool is a Windows application designed for uploading symbol files
+to CrashFix server. Debugging symbols are 
+required to correctly recover stack traces from incoming crash reports.
+Typically a CrashFix user who builds the client application may run the uploader tool
+to upload generated debugging symbols to CrashFix web application. 
+
+Uploader installation instructions are provided on the \ref installation page.
+
+The uploader presents in two flavors - GUI (<i>uploader_gui.exe</i>) and console (<i>uploader.exe</i>). 
+The GUI application is more
+easy to use. The console application, however, is applicable for automating
+symbol uploading procedure.
+Below we provide some instructions on how to use the uploader.
+
+\subsection gui_uploader GUI Uploader
+
+To run uploader GUI, you need to launch <i>uploader_gui.exe</i> executable. 
+The user interface of debug info uploader tool is presented in the figure below.
+
+\image html uploader_tool.png "Uploader GUI"
+
+First of all, you need to specify where to search for symbol files. In the 
+<i>Where PDB files located</i> field, enter the path where your project binaries
+are generated during the compilation. Or you can press the <i>Browse</i> button to
+choose a directory from the directory tree.
+
+If you want to search for symbol files in the specified directory and its
+subdirectories, set check to the <i>Recursive search in subdirectories</i> check box.
+
+Enter the following URL into the <i>Upload URL</i> field:
+<i>http://example.com/crashfix/index.php/debugInfo/uploadExternal</i>.
+In the URL above, replace <i>example.com</i> placeholder with your CrashFix 
+server name.
+
+Enter the project name to the <i>Project Name</i> field. For example, if you have
+project Editor, type 'Editor'. When uploaded, symbol files will be marked as
+belonging to the specified project.
+
+Press the <i>Upload Now</i> button to start file upload. The progress of file
+upload is displayed in the <i>Log</i> area. You may right-click the <i>Log</i> area and
+copy the log to clipboard by choosing <i>Copy entire log to clipboard</i> 
+from the context menu.
+
+\subsection console_uploader Console Uploader
+
+The console uploader (<i>uploader.exe</i>) provides the same functionality
+as the GUI uploader. To see the list of commands provided by the tool and usage
+examples, type the following:
+
+<pre>
+uploader.exe --help
+</pre>	
+
+Further reading: \ref batch_import
+
+*/

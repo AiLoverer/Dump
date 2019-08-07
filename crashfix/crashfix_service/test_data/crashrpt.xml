@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<CrashRpt version="1300">
+    <CrashGUID>4dd91d11-9338-4645-9017-74da6b8e9eb0</CrashGUID>
+    <AppName>CrashRpt Tests</AppName>
+    <AppVersion>1.3.0.0</AppVersion>
+    <ImageName>D:\Projects\CrashRpt\trunk\bin\CrashRptTestd.exe</ImageName>
+    <OperatingSystem>Microsoft Windows XP Build 2600 Service Pack 3</OperatingSystem>
+    <OSIs64Bit>0</OSIs64Bit>
+    <GeoLocation>ru-ru</GeoLocation>
+    <SystemTimeUTC>2011-10-21T09:14:21Z</SystemTimeUTC>
+    <ExceptionType>11</ExceptionType>
+    <GUIResourceCount>43</GUIResourceCount>
+    <OpenHandleCount>46</OpenHandleCount>
+    <MemoryUsageKbytes>4936</MemoryUsageKbytes>
+    <ScreenshotInfo>
+        <VirtualScreen left="0" top="0" width="1280" height="1024" />
+        <Monitors>
+            <Monitor left="0" top="0" width="1280" height="1024" file="screenshot0.jpg" />
+        </Monitors>
+        <Windows>
+            <Window left="414" top="316" width="453" height="362" title="CrashRptTest" />
+        </Windows>
+    </ScreenshotInfo>
+    <CustomProps>
+        <Prop name="VideoCard" value="nVidia GeForce 9800" />
+    </CustomProps>
+    <FileList>
+        <FileItem name="crashrpt.xml" description="Crash Description XML" />
+        <FileItem name="dummy.ini" description="Dummy INI File" />
+        <FileItem name="dummy.log" description="Dummy Log File" />
+        <FileItem name="regkey.xml" description="Registry Key Dump" />
+        <FileItem name="screenshot0.jpg" description="Desktop Screenshot" />
+    </FileList>
+    <UserEmail></UserEmail>
+    <ProblemDescription></ProblemDescription>
+</CrashRpt>

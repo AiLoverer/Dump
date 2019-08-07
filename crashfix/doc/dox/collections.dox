@@ -1,0 +1,77 @@
+/*!
+
+\page collections Collections
+
+Similar crash report files are grouped into collections. This makes it easier
+to analyze crash reports - you do not have to view many crash reports in turn,
+instead you may view a single crash report or several crash reports from a collection,
+analyze them and (if desired) open a new bug for the entire collection.
+
+To browse crash collections, you need to log in under a user
+having permission to browse crash reports, and the user should be a member 
+of the specified project. After you have logged in, 
+click the <i>Collections</i> button on the Main menu.
+Collections page appears (shown in the figure below).
+
+\image html collections.png "Collections"
+
+The <i>Collections</i> page displays crash collections created by the
+CrashFix service for the currently selected version of the current project. 
+You may also display collections for all versions of the current project. 
+To do this, select '(all)' from <i>Version</i> drop-down list.
+
+The <i>Collections</i> page contains the search field allowing to filter collections
+by name and by type. For example, the default filter displays collections
+that do not not have bug(s) assigned or having open bugs. It hides the collections
+whose bugs are closed. So, the default filter makes it easier to concentrate
+on new collections.
+
+There is also a default collection named 'Unsorted Reports'. New reports
+are coming into this collection by default. When CrashFix service processes
+arriving reports, it creates new collections and moves crash reports to
+an appropriate collection.
+
+The algorithm of determining an appropriate collection name for a new crash report is the following:
+
+<ul>
+    <li>if crash report's status is Waiting, it is put into 'Unsorted Reports' collection;</li>
+    <li>if crash report's status is Invalid, it is put into 'Invalid Reports' collection;</li>
+    <li>if crash report does not contain any exception information (for example, when there is no minidump file in the crash report),
+        it is put into 'Reports without Exception Information' collection;</li>
+    <li>if crash report's status is Ready, it's collection is determined as follows. CrashFix looks 
+        for the thread where exception occurred. If debugging symbols are loaded for some stack frames of that thread, 
+        the topmost stack frame whose symbol name presents becomes the collection name; 
+        otherwise module's name and exception address relative to module's base address becomes the collection name. 
+        If no module can be determined, it just uses the exception address as the collection name.
+    </li>
+</ul>
+
+Although collection names are generated automatically by CrashFix, sometimes 
+it may required to define custom collection names. Since v.1.0.4, a client 
+application is able to define custom collection name by adding custom property 
+named 'CollectionId' to crash report. For additional information, please refer to
+\ref client_integration page.
+
+\section collection_details Collection Details
+
+To see certain collection details, click its ID. The <i>View Collection #NN</i>
+page appears, where NN is the collection ID. The details page is
+shown below.
+
+\image html collection_details.png "Collection Details"
+
+At the top of the page, there is actions toolbar. Using this toolbar, 
+one may open a new bug for this collection or permanently delete the 
+collection with its crash reports.
+
+Below the actions toolbar, the collection title, creation date, crash report count
+and associated bugs are displayed. And below this information, crash reports
+belonging to this collection are listed.
+
+At the bottom of the page, you can see some information on count of crash reports
+contained in this collection and maximum crash report count quota for this 
+collection.
+
+Further reading: \ref bugs
+
+*/

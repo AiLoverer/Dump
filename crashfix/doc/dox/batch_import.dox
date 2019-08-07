@@ -1,0 +1,94 @@
+/*!
+
+\page batch_import Batch Import
+
+Since v.1.0.1, CrashFix web application provides an alternative way of uploading
+crash reports and symbol files. You can place crash report archives and 
+symbol files inside of the predefined directory, and the CrashFix web application 
+will import them to the database automatically in batch mode.
+
+Batch import allows, for example, to upload crash reports
+to a web server using some external script, copy the uploaded files to another machine over SSH and
+import the files to the CrashFix server installed on that machine. 
+Using this way, you can install CrashFix
+on a machine inside of local area network (LAN) and not expose its web interface to outside world,
+thus storing your files in a more secure way.
+
+\section batch_import_of_crash_reports Batch Import of Crash Report Files
+
+To use the batch import feature for crash reports, do the following:
+copy crash report ZIP archive files to the 
+<i>%DOCUMENT_ROOT%/crashfix/protected/import/crashReports</i> directory 
+(replace the <i>DOCUMENT_ROOT</i> placeholder with the actual path to your Apache web server's
+document root). Crash reports should be organized in subdirectories as follows:    
+
+<pre>
+%DOCUMENT_ROOT%/crashfix/protected/import/crashReports
+    project1
+        version1
+            crashreport1.zip
+            crashreport2.zip
+            ...
+        version2
+            crashreport3.zip
+            crashreport4.zip
+            ...
+        ...
+   project2
+        version3
+            crashreport5.zip
+            crashreport6.zip
+            ...
+        version4
+            crashreport7.zip
+            crashreport8.zip
+            ...
+        ...
+  ...
+</pre>
+
+The subdirectory structure presented above is required to correctly determine
+crash report's project name and version.
+
+\section batch_import_of_debug_info Batch Import of Debug Info Files
+
+To use the batch import feature for debug info (symbol) files, do the following:
+copy your symbol files to the 
+<i>%DOCUMENT_ROOT%/crashfix/protected/import/debugInfo</i> directory 
+(replace the <i>DOCUMENT_ROOT</i> placeholder with the actual path to your Apache web server's
+document root). Your files should be organized in subdirectories as follows:    
+
+<pre>
+%DOCUMENT_ROOT%/crashfix/protected/import/debugInfo
+    project1
+        version1
+            symbol1.pdb
+            symbol2.pdb
+            symbol3.pdb
+            ...
+        ...
+   project2
+        version2
+            symbol4.pdb
+            symbol5.pdb
+            symbol6.pdb
+            ...
+        ...
+  ...
+</pre>
+
+The subdirectory structure presented above is required to correctly determine
+symbol file's project name.
+
+\section disable_batch_import Temporarily Disabling Batch Import
+
+When you are copying files to the <i>%DOCUMENT_ROOT%/crashfix/protected/import/</i> 
+directory, it may be useful to temporarily prevent CrashFix from importing the files
+until you finish the copy operation.
+
+Since v.1.0.2, it is possible to tell CrashFix to temporarily stop batch import of crash reports and
+debug info files by placing the <i>importlock</i> file to the <i>DOCUMENT_ROOT/crashfix/protected/import</i> 
+directory. If CrashFix encounters that file, it suspends the batch import operation. Removing
+the file would allow CrashFix to resume the batch import operation.
+
+*/

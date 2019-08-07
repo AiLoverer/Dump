@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="crashfix" 
+         basedir=".." 
+         default="build"
+         description="CrashFix Web Application" >
+
+    <!-- Version. -->
+    <property name="product_version"   value="1.0.4" override="true" />
+    
+    <!-- Directory where source files are located. -->
+    <property name="srcdir"   value="${project.basedir}" override="true" />
+    
+    <!-- Directory where to write build output files. -->
+    <property name="builddir" value="${project.basedir}/build/crashfix" override="true" />
+    
+    <!-- Wether to skip third-party files when building (reduces build time) -->
+    <property name="skipthirdparty" value="false" override="false" />
+
+    <!-- How to name the output package -->
+    <property name="package_name"  value="crashfix-webapp-${product_version}" override="true" />	
+    
+    <!-- Directory where to install output files (OS-specific). -->
+    <if><equals arg1="${host.os}" arg2="Linux" />
+    <then>
+        <property name="installdir"   value="/var/www/html/crashfix" override="true" />
+    </then>
+    <else>
+        <property name="installdir"   value="C:\Program Files (x86)\Apache Software Foundation\Apache2.2\htdocs\crashfix" override="true" />
+    </else>
+    </if>
+    
+    <!-- Webserver user/group (Linux-only). -->
+    <property name="webserveruser"   value="www-data" override="true" />
+    <property name="webservergroup"  value="www-data" override="true" />
+      
+    <!-- Main application files. -->
+    <fileset id="mainfiles" dir="${srcdir}">
+        <include name="index.php" /> 
+        <include name="css/*.css" />        
+	<include name="css/*.gif" />        
+        <include name="images/*.png" />                 
+        <include name="protected/.htaccess" />
+        <include name="protected/yiic.php" />
+        <include name="protected/yiic" />
+        <include name="protected/yiic.bat" />
+        <include name="protected/commands/*.php" />		
+        <include name="protected/components/*.php" />
+	<include name="protected/config/*.php" />
+        <include name="protected/controllers/*.php" />
+        <include name="protected/migrations/*.php" />
+        <include name="protected/models/*.php" />                
+        <include name="protected/views/**/*.php" />        
+    </fileset>
+    
+    <!-- Third-party files (frameworks, extensions and so on). -->
+    <fileset id="thirdpartyfiles" dir="${srcdir}">
+        <include name="protected/extensions/**" />
+        <include name="protected/vendors/**" />
+	<include name="protected/framework/**" />        
+    </fileset>
+    
+    <!-- Config file(s). -->
+    <fileset id="config_template_files" dir="${srcdir}">
+        <include name="protected/config/*.ini.template"/>        
+    </fileset>
+        
+    <!-- Unit/functional test files. -->
+    <fileset id="testfiles" dir="${srcdir}">
+        <!--<include name="index-test.php" />-->
+        <include name="protected/tests/**/*.php" />
+        <include name="protected/tests/fixtures/files/*" />
+        <include name="protected/tests/phpunit.xml" />
+    </fileset>
+        
+    <!-- ============================================  -->
+    <!-- Target: Clean                               -->
+    <!-- ============================================  -->
+    <target name="clean" description="Cleans the build directory">
+		
+        <echo msg="Cleaning up build directory..." />      
+        <delete dir="${builddir}" />        
+		
+	<echo msg="Cleaning up build_encoded directory..." />      		
+        <delete dir="${buildencodeddir}" />        		
+		
+    </target>
+    
+	<!-- ============================================  -->
+    <!-- Target: build                                 -->
+    <!-- ============================================  -->
+    <target name="build">
+              
+        <echo msg="Creating build directory..." />      
+        <mkdir dir="${builddir}" />         
+        
+	<echo msg="Copying main files..."/>
+               
+        <copy todir="${builddir}">
+            <fileset refid="mainfiles" />            
+        </copy>
+        
+        <if><not><istrue value="${skipthirdparty}"/></not>
+        <then>
+            <echo msg="Copying third-party files..."/>               
+            <copy todir="${builddir}">
+                <fileset refid="thirdpartyfiles" />            
+            </copy>
+        </then>
+        <else>
+            <echo msg="Skipping third-party files (skipthirdparty==${skipthirdparty})..."/>               
+        </else>		
+        </if>
+
+        <echo msg="Copying config file(s)..." />
+
+        <copy todir="${builddir}/">
+            <mapper type="glob" from="*.ini.template" to="*.ini"/>
+            <fileset refid="config_template_files" />                
+        </copy>
+			   
+        <echo msg="Making subdirectories..." />
+		
+        <mkdir dir="${builddir}/assets"/>
+        <mkdir dir="${builddir}/protected/data" mode="0755"/>        
+        <mkdir dir="${builddir}/protected/data/crashReports"  mode="0775"/>
+        <mkdir dir="${builddir}/protected/data/debugInfo" mode="0775"/>        
+        <mkdir dir="${builddir}/protected/runtime"  mode="0775"/>
+        <mkdir dir="${builddir}/protected/runtime/crashReports"  mode="0775"/>
+        <mkdir dir="${builddir}/protected/runtime/debugInfo"  mode="0775"/>        
+        <mkdir dir="${builddir}/protected/import"  mode="0775"/>
+        <mkdir dir="${builddir}/protected/import/crashReports"  mode="0775"/>
+        <mkdir dir="${builddir}/protected/import/debugInfo"  mode="0775"/>        
+
+		
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: install-no-encode                     -->
+    <!-- ============================================  -->
+    <target name="install" depends="build" description="Installs the web application">
+        
+        <echo msg="Creating install directory..." />      
+        <mkdir dir="${installdir}" />                  
+                          
+        <echo msg="Copying files..." />
+               
+        <copy todir="${installdir}">
+            <fileset dir="${builddir}">           
+		<include name="**" />
+		<exclude name="protected/config/user_params.ini"/>
+            </fileset>
+        </copy>
+        
+	<echo msg="Copying config file..." />
+            <touch file="${installdir}/protected/config/user_params.ini"/>
+            <copy todir="${installdir}">
+            <fileset dir="${builddir}">           
+		<include name="protected/config/user_params.ini"/>				
+            </fileset>
+        </copy>
+				
+	<echo msg="Copying test files..." />
+               
+        <copy todir="${installdir}">
+            <fileset refid="testfiles" />            
+        </copy>		
+				
+        <if><equals arg1="${host.os}" arg2="Linux" /><then>
+		
+            <echo msg="Setting up files owner permissions..." />
+		
+            <chown file="${installdir}" user="${webserveruser}.${webservergroup}">
+                <fileset dir="${installdir}" includes="**" />
+            </chown>            
+        </then></if> 
+        
+        <phingcall target="migrate" />
+        
+    </target>
+	
+    <!-- ============================================  -->
+    <!-- Target: Migrate                               -->
+    <!-- ============================================  -->
+    <target name="migrate" description="Migrates database up">
+        
+        <echo msg="Migrating database up..." />
+        <exec command="php yiic.php migrate --interactive=0" 
+              dir="${installdir}/protected" 
+              logoutput="true" checkreturn="true" />    
+			  
+    </target>
+    
+    <!-- ============================================  -->
+    <!-- Target: test                                  -->
+    <!-- ============================================  -->
+    <target name="test" depends="install" description="Runs unit tests">
+        
+        <echo msg="Migrating test database up..." />
+		
+        <exec command="php yiic.php migrate up --connectionID=dbTest --migrationTable=test_migration --interactive=0" 
+              dir="${installdir}/protected" logoutput="true" checkreturn="true" />
+                    		
+		<echo msg="Running PHPUnit..." />
+		
+		<exec command="phpunit --stderr --coverage-html ./report unit" 
+              dir="${installdir}/protected/tests" 
+              passthru="true" checkreturn="true" />  
+            
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: package                               --> 
+    <!-- ============================================  -->
+    <target name="package" depends="build" description="Packages the web application's files">
+
+	<delete file="./${package_name}.tar.gz" />
+		
+        <echo msg="Creating TAR.GZ archive..." />
+
+        <tar destfile="./${package_name}.tar.gz" 
+             basedir="${project.basedir}/build" 
+             compression="gzip">            
+        </tar>			
+	
+        <reflexive>
+          <fileset dir="${builddir}/">
+                <include name="protected/config/user_params.ini"/>
+          </fileset>
+          <filterchain>
+                <replaceregexp>
+                   <regexp pattern="\n" replace="${line.separator}"/>
+                </replaceregexp>
+          </filterchain>
+        </reflexive>
+			
+        <delete file="./${package_name}.zip" />
+
+        <echo msg="Creating ZIP archive..." />
+
+        <zip destfile="./${package_name}.zip"
+                basedir="${project.basedir}/build">			
+        </zip>			
+
+    </target>
+    
+</project>

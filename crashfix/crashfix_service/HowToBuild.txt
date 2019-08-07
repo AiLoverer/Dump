@@ -1,0 +1,111 @@
+=============================
+Windows Building Instructions
+
+=============================
+
+
+
+Prerequisites:
+
+
+1. Microsoft Visual Studio 2010 (with service packs and hot fixes)
+2. doxygen
+
+ (to build documentation)
+3. CMake (to generate project files) 
+4. OpenSSL (encryption)
+5. Active Perl (to build OpenSSL in Linux).
+6. Visual Leak Detector (for tests).
+
+=============================
+Linux Building Instructions
+
+=============================
+
+Prerequisites:
+
+1. gcc (GNU Compiller Collection) 
+2. doxygen (to build documentation)
+3. CMake 2.8 or later (to generate project files) 
+4. OpenSSL (encryption)
+5. mercurial (to checkout the source)
+
+
+Building in Linux Ubuntu:
+
+sudo apt-get install mc codeblocks mercurial cmake build-essential libssl-dev rpm
+make dumper
+cd dumper
+hg pull http://192.168.181.1:8000
+hg up
+cmake clear .
+cmake -G "CodeBlocks - Unix Makefiles" .
+cmake -DCMAKE_BUILD_TYPE=Debug ./Debug
+cmake -DCMAKE_BUILD_TYPE=Release ./Release
+make clean
+make [-VERBOSE=""]
+sudo make install
+
+Building packages:
+cpack .
+
+Resolving 'Address already in use' issue:
+sudo netstat -ltnp|grep ":50"
+sudo kill -9 pid
+
+========================================================
+Installing Apache HTTP Server and PHP 5 (Debian/Ubuntu)
+========================================================
+
+From a command shell, you will run the following commands:
+
+sudo apt-get install apache2
+
+sudo apt-get install php5
+
+sudo apt-get install libapache2-mod-php5 php5-gd
+
+sudo apt-get install php5-sqlite
+
+sudo service apache2 restart
+
+Note that if apache is already installed you can omit the first line. 
+Your web files will now be found in /var/www/
+
+Installing sendmail:
+
+sudo apt-get install sendmail
+
+
+Installing Pear:
+
+sudo apt-get install php-pear
+
+Installing PHPUnit:
+
+sudo apt-get install phpunit
+
+Installing Selenium extension:
+
+sudo pear channel-update pear.phpunit.de
+sudo apt-get install php5-curl
+sudo pear install phpunit/PHPUnit_Selenium-1.2.5
+
+Installing Phing:
+
+$ sudo pear channel-discover pear.phing.info
+$ sudo pear install phing/phing
+
+===================
+Running Unit Tests
+===================
+
+Goto protected/tests directory and type in command line:
+
+phpunit --stderr unit
+
+This will run all unit tests in unit subfolder. The --stderr key
+should be used to avoid sending headers befor session is created.
+
+To avoid Code Coverage low memory PHP error, increase memory limit 
+in php.ini from 128M to 256M and restart Apache.

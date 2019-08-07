@@ -1,0 +1,81 @@
+/*!
+
+\page logging Logging & Troubleshooting
+
+CrashFix is a complex system and its successful work depends on many 
+factors, like file integrity, file and directory permissions, PHP configuration, 
+free disk space, availability of required PHP extensions,
+correctness of incoming data and so on. Any of those factors may introduce
+unexpected issues, and CrashFix provides several troubleshooting tools for resolving
+those issues.
+
+<i>Note:</i> The \ref faq page also contains some questions and answers related to troubleshooting.
+
+\section logging_section Logging
+
+Logging is the main way for investigating problems. 
+CrashFix web application and service components create and maintain several text
+log files that may contain information useful for troubleshooting installation
+and configuration issues.
+
+CrashFix web application creates the following log files:
+
+<pre>
+%DOCUMENT_ROOT/crashfix/protected/runtime/application.log
+</pre>
+
+The file above is used for writing information about PHP warnings and errors
+occurring in CrashFix web application when it is being accessed by CrashFix users. 
+For example, if a PHP error happens when a user tries to open some CrashFix page in 
+his/her web browser, the error information is written here.
+
+<pre>
+%DOCUMENT_ROOT/crashfix/protected/runtime/console.log
+</pre>
+
+The file above is used for writing information about PHP warnings and errors
+occurring in CrashFix web application during communication with CrashFix service. 
+For example, if an error occurs when an incoming crash report is being processed,
+the error information is written to this file.
+
+CrashFix service creates the following log files (in Windows):
+
+<pre>
+C:\\Program Files (x86)\\CrashFix\\logs\\monitor.log
+C:\\Program Files (x86)\\CrashFix\\logs\\error.log
+</pre>
+
+and the following log files in Linux:
+
+<pre>
+/var/log/crashfix/monitor.log
+/var/log/crashfix/error.log
+</pre>
+
+The <i>monitor.log</i> file contains messages from CrashFix monitoring 
+process, while the <i>error.log</i> contains messages from the service itself.
+
+\section verbose_error_messages Verbose Error Messages
+
+When a PHP error occurs on some CrashFix page, the short error message is printed
+to web browser screen. By default, CrashFix error messages are as short as possible.
+This is done to not expose details of internal logics to end users, thus making
+the system more secure. 
+
+<i>Note:</i> Although the error messages are short, the administrator
+is able to recover full error information (including the stack trace) from 
+<i>application.log</i> file mentioned above.
+
+However, sometimes it may be required to enable verbose PHP error messages
+for debugging purposes (this is strongly not recommended to do in production
+systems). The administrator is able to enable verbose PHP errors by defining
+<i>CRASHFIX_WEBAPP_DEBUG</i> PHP environment variable in <i>php.ini</i> configuration
+file:
+
+<pre>
+SetEnv CRASHFIX_WEBAPP_DEBUG 1
+</pre>
+
+Further reading: \ref daily_usage
+
+*/

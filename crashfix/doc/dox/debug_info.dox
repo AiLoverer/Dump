@@ -1,0 +1,47 @@
+/*!
+
+\page debug_info Debug Info
+
+Debug Info term means debugging symbol file. The symbols usually contain
+various information on a compiled executable file and help to recover call
+stacks from crash report's minidump files. 
+
+To see the list of uploaded debug info files, you need to log in under a user
+having permission to browse debug info, and the user should be a member 
+of the specified project. 
+After you have logged in, click the <i>Debug Info</i> button on the Main menu.
+Debug Info page appears (shown in the figure below).
+
+\image html debug_info.png "Debug Info"
+
+Typically, debug info files are uploaded by a user belonging to Dev group 
+or to Admin group.	
+Although the Debug Info page allows to upload symbol files manually, it 
+is more convenient
+to use \ref uploader_tool for this purpose.
+
+\subsection searching_for_symbol_files Searching for Symbol Files
+
+Symbol files must be uploaded before crash reports are received. Without 
+matching symbol file, it is impossible to reconstruct correct call stack. 
+Matching symbol files are determined by GUID+Age string, which is a concatenation
+of symbol file's GUID (unique ID) and build Age (a positive integer number).
+
+GUID is assigned to a symbol file when the file is first created by the linker.
+Build age is initially assigned to one (1) and incremented each time the linker modifies the symbol
+file. So, if you partially rebuild the application, its symbol file's build age will be incremented.
+
+Typically, symbol file is considered matching if both GUID and Age equal to GUID
+and Age embedded into minidump file. But, sometimes it may be required to load the symbol file
+even if its build age does not match exactly. For example, if your build system increments
+your symbol file's build age by some reason and you need to load those symbols.
+
+To allow CrashFix to load such a non-matching symbol, you can relax build age requirement.
+To do that, go to <i>Administer->Projects</i> page, then click your project name and then
+click <i>Update Project</i> link. On the appeared page, remove check mark from the 
+<i>Require exact build age for debugging symbols</i> check box and click Save button.
+After that, CrashFix will load your symbols even if their build age does not match accurately.
+
+Further reading: \ref uploader
+
+*/

@@ -1,0 +1,157 @@
+/*!
+\page getting_started Getting Started
+
+<b>CrashFix</b> is a crash report analysis software designed for 
+Windows-based applications written in C++ programming language.
+
+\section what_is_crash_reporting What is Crash Reporting?
+
+Errors in the code are inevitable, no matter how well you test your 
+application. When a critical error occurs on the end user's machine, 
+it can be difficult to reproduce it and take action to address it. 
+That is, you get an unstable application and dissatisfied users.
+
+Crash reporting is a technique allowing to receive user feedback and 
+improve quality and stability of your software. To enable crash 
+reporting in your app, you integrate it with a light-weight library 
+also named a crash reporter.
+
+The crash reporter's function is to automatically report crash data 
+to the software vendor. Crash reports often include data such as stack 
+traces, type of crash, and version of software. This information helps 
+software developers to diagnose and fix the underlying problem causing 
+the crash.
+
+If the application sending the crash reports is not stable enough and/or 
+popular enough, software vendor will receive tons of crash reports that 
+need to be stored, organized and analyzed.
+
+\section why_crashfix Why CrashFix?
+
+CrashFix server allows to easily receive, store, organize and analyze 
+crash reports sent by your C++ app.
+
+CrashFix is able to process crash reports from 32-bit (x86) Windows 
+applications built in Visual C++ IDE. 64-bit (x64) platform is not 
+supported currently.
+
+CrashFix is useful during development, beta-testing and post-release 
+stages of application's life cycle:
+
+  - on application development and beta-testing stages, CrashFix allows 
+    to collect and analyze crash reports from unstable versions of your 
+    application allowing to improve stability and overall quality of 
+    your software.
+
+  - on post-release stage, CrashFix allows to continuously collect and 
+    analyze crash reports received from users of your application around 
+    the world helping to reproduce and fix most popular bugs, improve 
+    software stability and prepare hot-fix releases.
+
+\section how_does_crashfix_work How does CrashFix Work?
+
+The figure below briefly illustrates how CrashFix works:
+
+\image html schema.png "CrashFix"
+
+When a critical error occurs in your application, a crash report is 
+generated automatically by the light-weight crash reporting library 
+that you integrate with your software. A crash report is a usual ZIP 
+archive containing several files intended to help you to reproduce the 
+crash, determine its reason and enhance the code that caused the crash.
+
+A crash report may contain a crash minidump file, crash description 
+XML file, desktop screen shot file(s), registry key dumps, and (optionally) 
+other application-defined files, e.g. log files or application settings files.
+
+Crash reports are delivered over the Internet to your CrashFix server. 
+You may receive hundreds of crash reports a day.
+
+CrashFix server automatically receives crash reports and stores them in 
+database. It processes incoming crash reports and groups similar reports 
+into collections. CrashFix generates statistics report, so you can browse 
+crash report upload statistics, watch their version distribution, top crash 
+collections, bug dynamics, recent bug changes, symbol file upload dynamics 
+and other useful information.
+
+\section main_features What are the Main CrashFix Features?
+
+The main CrashFix features are listed below:
+
+<b>CrashFix is able to process crash reports from x86 Windows applications 
+built in MS Visual C++ IDE.</b>
+
+CrashFix is useful during development, beta-testing and post-release stages 
+of application's life cycle. CrashFix allows to continuously collect and 
+analyze crash reports received from users of your C++ app around the world 
+helping to reproduce and fix most popular bugs, improve software stability 
+and prepare hot-fix releases. For additional information, please refer to 
+our Crash Reports page.
+
+<b>CrashFix groups similar crash reports into collections.</b>
+
+Among hundreds of crash reports there may be only several different problems, 
+while others just duplicate the information about these problems. Opening so 
+many reports manually and analyzing their content may become boring and take 
+a lot of time. Grouping duplicate crash reports allows to concentrate on most 
+popular bugs. This makes it easier to analyze crash reports - you do not 
+have to view many crash reports in turn, instead you may view a single crash 
+report or several crash reports from a collection, analyze them and (if 
+desired) open a new bug for the entire collection. For additional information, 
+please refer to our Collections page.
+
+<b>CrashFix has a built-in bug tracker.</b>
+
+When you open a crash report from a collection, you decide whether to take 
+an action on it later. For example, if you can reproduce the crash, you may 
+decide to fix it later. In this case you open a bug for the collection. A bug 
+is a synonym of a problem. CrashFix allows to associate bugs with crash 
+collections and/or with individual crash reports. Ideally, crash collections 
+and bugs are in one-to-one relationship, meaning each crash collection has 
+exactly one bug. The bug tracker allows several project members to collaborate: 
+a developer may enhance the code that caused crash, a quality assurance engineer 
+may verify that the problem has been fixed, and the project manager may monitor 
+what bugs are not fixed yet. For additional information, please refer to our 
+Bugs page.
+
+<b>CrashFix is able to generate statistics reports.</b>
+
+Statistics is important for understanding the progress of crash report 
+analysis. For example, statistics may show how many crash reports have been 
+received, what are the most popular crash types, how many bugs have been opened 
+and/or fixed, what bugs have been modified recently and so on. CrashFix can 
+produce statistics digest allowing to see crash report dynamics and version 
+distribution, bug dynamics and other. CrashFix can present statistics in form 
+of text summaries and diagrams (pie charts or line graphs). For additional 
+information, please refer to our Digest page.
+
+<b>CrashFix has a simple administration model.</b>
+
+Crash report files being sent by an application to CrashFix server are 
+received and stored in project space. If a user needs to access the project to 
+browse and modify crash reports and/or perform other actions, the administrator 
+may assign the user a role in the desired project. A project has associated 
+disc quotas defining how many disc space the project may occupy. For additional 
+information, please refer to our CrashFix Administration page.
+
+<b>CrashFix can be installed on infrastructure totally controlled by you.</b>
+
+CrashFix is a server software hosted on your own server infrastructure (but 
+not a web-service). This advantage is especially valuable in corporate 
+environment where crash reports and debugging symbols must be stored 
+privately as sensitive data. Why to send your data to a third-party 
+web-service when you may store it on your own server? For additional 
+information, please refer to our Installation page.
+
+<b>CrashFix runs in both Windows and Linux operating systems.</b>
+
+CrashFix can be installed to a machine running Windows or Linux. 
+Installing it in Windows is a bit easier and more suited for evaluation. 
+CrashFix server supports Linux, because most server infrastructure is 
+Linux-based. Installation instructions for the most popular Linux 
+distributions (for example, Ubuntu or CentOS) are provided.
+
+Further reading: \ref architecture_overview
+
+
+*/

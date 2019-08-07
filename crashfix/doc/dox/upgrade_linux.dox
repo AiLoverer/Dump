@@ -1,0 +1,142 @@
+/*!
+\page upgrade_linux Upgrading CrashFix in Linux
+
+This page contains instructions of upgrading CrashFix components
+from a previous version to the newest version in Linux operating system.
+    
+\section linux_upgrade_make_backup First Make a Backup
+
+It is recommended to do a backup of CrashFix files before you upgrade them. 
+
+Copy entire directory where you have installed the CrashFix web application
+(<i>%DOCUMENT_ROOT%/crashfix</i>) or at least only its subdirectory containing
+crash report files and debug info files (<i>%DOCUMENT_ROOT%/crashfix/protected/data</i>):
+
+<pre>
+cp -R /path/to/dir/crashfix /path/to/backup/dir
+</pre>
+
+The command above will copy CrashFix web application's directory and all
+its subdirectories to the backup directory.
+
+To backup your MySQL database, you can use the <i>mysqldump</i> tool. From your command shell,
+run the following command:
+
+<pre>
+mysqldump -u root -p database_name &gt; database_backup.txt
+</pre>
+    
+The command above will create the file <i>database_backup.txt</i> in the current
+directory. The file will contain SQL instructions for creating the <i>database_name</i>
+database and filling its tables. The <i>database_name</i> plaseholder should be the name 
+of the database where CrashFix tables are stored.
+
+<i>Note:</i> If something happens when you upgrade your database, you can use the 
+<i>mysql</i> tool to restore previous state of the database. 
+If you decide to restore your database, from your command shell, run the following command:
+
+<pre>
+mysql -uroot -p database_name &lt; database_backup.txt
+</pre>
+
+\section linux_upgrade_webapp Upgrading CrashFix Web Application
+
+Download the CrashFix web application <i>tar.gz</i> archive from our 
+Download page. Then unpack the archive to web server's document root directory: 
+
+<pre>
+tar xzvf &lt;archive_name&gt;
+</pre>	
+
+Edit the <i>%DOCUMENT_ROOT%/crashfix/protected/config/user_params.ini</i> config file and
+specify the correct database connection string, login and password. 
+
+<i>Note:</i> you can just copy the <i>user_params.ini</i> file that you have
+previously saved for backup.
+
+\subsection linux_set_file_dir_perms Setting File and Directory Permissions
+
+Next you should configure file and directory permissions.
+From a command shell, run the following command:
+
+<pre>
+sudo chmod -R 0755 %DOCUMENT_ROOT%/crashfix
+</pre>
+
+The command above makes <i>%DOCUMENT_ROOT%/crashfix</i> directory, its subdirectories and 
+files readable and writable for Apache webserver.
+
+The following command sets Apache webserver user to be the owner of 
+<i>%DOCUMENT_ROOT%/crashfix</i> directory and its subdirectories (typically, Apache webserver
+runs as 'www-data' user of 'www-data' group in Debian or Linux Ubuntu or as 'apache' user of
+'apache' group in CentOS or Red Hat Linux). If your system is Debian or Linux Ubuntu, type 
+the following command:
+
+<pre>
+sudo chown -R www-data:www-data %DOCUMENT_ROOT%/crashfix
+</pre>
+
+If your system is CentOS or Red Hat Linux, type the following:
+
+<pre>
+sudo chown -R apache:apache %DOCUMENT_ROOT%/crashfix
+</pre>
+
+After that, if everything is OK, you should be able to see 
+the following page in your browser:
+
+\image html webapp_login_page.png "Web application login page"
+
+\subsection linux_upgrade_db Upgrading CrashFix Database
+
+And at last, CrashFix database tables must be updated before using the 
+web application. This is performed by the database migration mechanism.
+To upgrade the database tables, run the following command:
+
+<pre>
+sudo php %DOCUMENT_ROOT%/crashfix/protected/yiic.php migrate
+</pre>
+
+When prompted, press 'y' and then press 'Enter'. If everything is OK, the
+following message appears:
+
+<pre>
+Migrated up successfully.
+</pre>
+
+Now your CrashFix web application is upgraded.
+
+\section linux_upgrade_service Upgrading CrashFix Service
+
+Stop the CrashFix service by typing the following command: 
+
+<pre>
+sudo service crashfixd stop
+</pre>
+
+Download an appropriate CrashFix package (RPM or DEB) from 
+our Download page. 
+
+When the package has been downloaded, update it by typing the following 
+(for DEB package):
+
+<pre>
+sudo dpkg -i &lt;package_name&gt;
+</pre>
+
+or (for RPM package):
+
+<pre>
+sudo yum install &lt;package_name&gt;
+</pre>
+
+In both the cases above, you should replace the <i>&lt;package_name&gt;</i> 
+placeholder with the file name you have downloaded.
+
+Next, start the CrashFix service by typing the following command: 
+
+<pre>
+sudo service crashfixd start
+</pre>
+
+*/

@@ -1,0 +1,235 @@
+/*!
+\page faq Frequently Asked Questions
+
+This page covers the following topics:
+
+  - \ref general_questions
+  - \ref installing_crashfix_in_windows_questions
+  - \ref installing_crashfix_in_linux_questions
+  - \ref uploader_questions
+
+\section general_questions General Questions
+
+<b>What is CrashFix?</b>
+
+CrashFix is a server software designed to make crash report processing 
+easier for application developers. CrashFix server allows to easily 
+receive, store, organize and analyze crash reports sent by your C++ app.
+
+<b>What is crash report?</b>
+
+Crash reporting is a technique allowing to receive user feedback and 
+improve quality and stability of your software. A crash is a synonym 
+of a critical error or an exeption. Crash report files include data 
+such as stack traces, type of crash, and version of software. This 
+information helps software developers to diagnose and fix the underlying 
+problem causing the crash.
+
+<b>Does my application need to have crash reporting?</b>
+
+Actually, yes. Errors in the code are inevitable, no matter how well 
+you test your application. When a critical error occurs on the end 
+user's machine, it can be difficult to reproduce it and take action to 
+address it. That is, you get an unstable application and dissatisfied 
+users. Crash reporting helps you to reproduce most popular problems in 
+your software and fix them.
+
+<b>What crash report types does CrashFix support?</b>
+
+CrashFix supports crash reports sent by x86 Windows applications written 
+in C++ and built in Visual C++ IDE. It does not support applications 
+running other operating systems and/or written in other programming languages.
+
+<b>I use CrashRpt open-source crash reporting library with my application. 
+Can CrashFix server process crash report files sent by CrashRpt?</b>
+
+Yes, CrashFix can receive, store and process crash report files sent with 
+the help of CrashRpt library.
+
+<b>How does CrashFix work?</b>
+
+When a critical error occurs in your application, a crash report is generated 
+automatically by the light-weight crash reporting library that you integrate 
+with your software. Crash reports are delivered over the Internet to your 
+CrashFix server. You may receive hundreds of crash reports a day. CrashFix 
+server automatically receives crash reports and stores them in database. It 
+processes incoming crash reports and groups similar reports into collections. 
+CrashFix generates statistics report, so you can browse crash report upload 
+statistics, watch their version distribution, top crash collections, bug 
+dynamics, recent bug changes, symbol file upload dynamics and other useful 
+information.
+
+<b>Are there any beginner's tutorials available?</b>
+
+Yes, please refer to our \ref tutorials page.
+
+<b>Where can I see what's new in the current version of CrashFix?</b>
+
+To see the change history, please refer to our \ref changelog page.
+
+<b>What web browser should I use for accessing CrashFix web application?</b>
+
+CrashFix web application should display itself properly in the latest version 
+of Internet Explorer (v.9 or later), Mozilla Firefox (v.16 or later) and 
+Google Chrome (v.22 or later). If you experience problems with displaying 
+CrashFix web application in your browser, consider updating it to the 
+latest version. Also, please ensure, that Java Script and cookies are 
+enabled in your web browser.
+
+\section installing_crashfix_in_windows_questions Installing CrashFix in Windows Questions
+
+<b>I install CrashFix, but service does not start. What do I do?</b>
+
+The service typically does not start when something is wrong with its configuration. 
+Please check the log files for diagnostic information.
+
+<b>Where do I look for CrashFix service's config file?</b>
+
+The service configuration file <i>crashfixd.conf</i> is stored in conf 
+subdirectory of CrashFix installation directory (C:\Program Files (x86)\CrashFix\conf).
+
+<b>I try to edit config file, but I can't save my changes (in Vista/Windows 7). What do I do?</b>
+
+Editing the config file requires administrative permissions. For example, 
+if you want to edit the config file in notepad, you should run notepad 
+as administrator.
+
+<b>Where do I look for CrashFix service's logs?</b>
+
+The service typically writes its logs into the logs subdirectory of 
+CrashFix installation directory (C:\Program Files (x86)\CrashFix\logs). 
+There should be two log files: monitor.log and error.log. The monitor.log 
+file contains messages from CrashFix monitoring process, while the 
+error.log contains messages from the service itself.
+
+<b>I don't see the error.log file, but monitor.log is there. Why?</b>
+
+When service starts, it creates the monitor.log file and writes startup 
+information there. If service initialization succeeds, it starts another 
+process that creates error.log file. So if there is no error.log file, 
+this means the service could not start successfully. You should be able 
+to determine the reason from monitor.log file.
+
+<b>CrashFix service sends me alert E-mails telling the web application is not installed correctly. What do I do?</b>
+
+This problem may be because you did not provide the correct path to the 
+CrashFix web application's installation directory (WEB_ROOT_DIR parameter) 
+in the crashfixd.conf file. For example, if you install the CrashFix web 
+application into Apache document root directory, the correct value for the parameter would be like below:
+
+<pre>
+WEB_ROOT_DIR = C:\Program Files (x86)\Apache Software Foundation\Apache2.2\htdocs\crashfix
+</pre>
+
+<b>I use WampServer. I'm sure that WEB_ROOT_DIR parameter is correct, but I 
+still receive alert E-mails. I can find error messages in error.log like 
+"Polling thread has encountered an error when executing PHP script 'php 
+"c:\wamp\crashfix/protected/yiic.php" poll'; execution time = 0.00 sec; error code = 255.". What do I do?</b>
+
+First, you should ensure that absolute path to php.exe file presents in 
+PATH environment variable. To do this, type php.exe in the shell window. 
+If an error message appears "php.exe is not recognized as an internal or 
+external command", you should add the absolute path to php.exe to the PATH 
+variable (and then probably reboot your computer).
+
+Next, you should modify your php.ini file to enable the php_sockets extension 
+(that extension is disabled by default by WampServer, but it is required for 
+communication between CrashFix web application and the CrashFix service).
+
+To enable the extension, please uncomment the following line in your php.ini file:
+
+extension=php_sockets.dll
+
+Please note the PHP Apache module and PHP client have different php.ini files, and you should edit them both.
+
+C:\wamp\bin\apache\apache2.2.22\bin\php.ini
+C:\wamp\bin\php\php5.3.13\php.ini
+
+Then you should restart WAMP services.
+
+<b>I try to start/restart/stop CrashFix service from the <i>Start Menu | All Programs | 
+CrashFix | Control CrashFix Service</i>, but nothing happens (in Vista/Windows 7). What do I do?</b>
+
+Starting/restarting/stopping CrashFix service requires administrative permissions. 
+For example, if you want to restart the service, you need to right-click the Restart 
+shorcut and choose Run as Administrator from the context menu.
+
+\section installing_crashfix_in_linux_questions Installing CrashFix in Linux Questions
+
+<b>I've not yet choosen which Linux distribution to use. Which one is recommended for installing CrashFix?</b>
+
+In general, it is recommended that you use a popular and well supported 
+Linux distribution like Ubuntu Linux or Red Hat Linux (either x86 or amd64). 
+If you plan to install CrashFix on Ubuntu, it is recommended to use an LTS 
+(long term support) release of Ubuntu Server, for example Ubuntu Server 12.04 LTS or 
+Ubuntu Server 14.04 LTS. Non-LTS releases are not recommended to use, 
+because of their short support period.
+
+<>bI try to install CrashFix service DEB package in Ubuntu, but dpkg tool reports some unresolved dependencies. What do I do?</b>
+
+The dpkg tool is not able to resolve dependencies automatically, 
+so you have to install missing packages manually. For example, if 
+libstdc++.so.6 is missing, you may type the following to resolve the package name:
+
+apt-file search libstdc++.so.6
+
+And then install the package:
+
+sudo apt-get install libstdc++6
+
+<b>When running database migration command, I'm getting the error message 'PHP Fatal error: The encoded file /var/www/crashfix/protected/yiic.php is corrupt.' What do I do?</b>
+
+Your installation files may be corrupted by some reason either during downloading 
+or copying. Please calculate MD5 checksum for the crashfix-webapp-1.0.x.tar.gz file 
+you downloaded. To calculate the MD5 checksum, use md5sum command like below:
+
+md5sum crashfix-webapp-1.0.x.tar.gz
+
+The calculated MD5 checksum for the file should match the checksum from the Download page.
+
+</b>I'm getting error 500 when trying to view CrashFix web application page in a web 
+browser (Linux Ubuntu). What do I do?</b>
+
+Error 500 typically means a web server configuration error. Please check the Apache error.log file located in /var/log/apache2/ directory. There should be a verbose description of the error.
+
+Also check the application.log file located in /var/www/crashfix/protected/runtime/ directory. There should be the stack trace of the error.
+
+\section uploader_questions CrashFix Uploader Related Questions
+
+<b>I want to upload a PDB file using CrashFix GUI uploader tool, but I do not see where to specify the version of the project. What do I do?</b>
+
+When uploading PDB files, you do not need to specify the version of the project, you just need to specify the name of the project. Matching PDB file is determined by GUID+Age string which is embedded into the file, so additional binding to the version of the project is not required.
+
+<b>I cannot upload my large debug info files. What do I do?</b>
+
+Please ensure you set these parameters in your php.ini config file as follows:
+
+max_execution_time = 0
+
+upload_max_filesize = 1024M
+
+post_max_size = 1024M
+
+After editing the php.ini file, restart you Apache server. Then you should be able to upload files up to 1 GB in size.
+
+<b>I have an 404 (page not found) error when trying to upload my debug info files with the uploader tool. What do I do?</b>
+
+Please check that your installation directory matches the directory 
+name in your upload URL. For example, if you have installed CrashFix 
+files to a custom directory under your Apache document root, than you 
+should specify different upload URL (like http://127.0.0.1/<your_dir_name>/index.php/debugInfo/uploadExternal.
+
+Another possible reason can be invalid port number in your upload URL. 
+For example, if you have configured your Apache server to use different 
+port (not port 80), than you should specify the port number in your 
+upload URL (like http://127.0.0.1:<port>/crashfix/index.php/debugInfo/uploadExternal.
+
+<b>I need to upload more debug info files than the project disk quota allows. How do I increase the disk quota?</b>
+
+To increase the quota, you can go to 'Administer' page, then click 
+'Projects' and click your project name in the list of projects, then 
+click 'Update Project' link to edit project quotas. You can also enter 
+0 (zero) as a quota value do make it unlimited. 
+
+
+*/

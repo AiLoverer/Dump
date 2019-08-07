@@ -1,0 +1,13 @@
+/*!
+\page installation Installation
+
+CrashFix server can be installed both in Windows and in Linux operating systems.
+
+  - \subpage install_windows page provides installation instructions for Windows.
+
+  - \subpage install_linux page contains installation instructions for Linux.
+
+  - \subpage upgrade_windows and \subpage upgrade_linux pages describe upgrading CrashFix 
+    from a previous version to the newest version in Windows or in Linux operating system, respectively.
+
+*/

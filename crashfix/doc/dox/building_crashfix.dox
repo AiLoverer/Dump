@@ -1,0 +1,62 @@
+/*!
+
+\page building_crashfix Building CrashFix from Source
+
+CrashFix binary files are available on our Download page.
+But, if you want, you can build CrashFix yourself from source. This page provides
+instructions on how to do that in Windows or in Linux operating systems.
+
+\section build_crashfix_in_windows Building CrashFix in Windows
+
+\subsection build_crashfix_service Building CrashFix Service
+
+To build CrashFix service from source, you will need Visual Studio 2010 or later.
+Go to <i>SOURCE_DIR\\crashfix_service</i> directory in CrashFix source directory and open the
+<i>CrashFix_vs2010.sln</i> file. 
+
+In Visual Studio window, select <i>Release</i> in the <i>Configuration manager</i> and
+press F7 to start build. 
+
+\subsection build_service_installer Building Service Installer
+
+To build CrashFix service installer, you will need <a href="http://nsis.sourceforge.net/Main_Page">NSIS</a>
+install system. After you install NSIS, go to <i>SOURCE_DIR\\crashfix_service\\service_installer</i> directory
+and right-click <i>installer.nsi</i> file. From the context menu, choose <i>Compile NSIS Script</i> item.
+When compiler finishes, you should be able to see the generated installer named like <i>crashfix-service-1.0.x-Win32.exe</i>.
+
+\section build_crashfix_in_linux Building CrashFix in Linux
+
+We assume you use Debian or Linux Ubuntu.
+
+\subsection build_service_linux Building CrashFix Service
+
+First, you need to install CMake (used for generating makefiles), Linux headers (build-essential) and RPM (to build RPM packages).
+To do that, type the following from your command shell:
+
+<pre>
+sudo apt-get install cmake build-essential rpm
+</pre>
+
+To generate makefiles, go to <i>SOURCE_DIR</i> and type the following:
+
+<pre>
+cmake -DCMAKE_BUILD_TYPE=Release
+</pre>
+
+Next, to build CrashFix service, type the following:
+
+<pre>
+make
+</pre>
+
+\subsection build_packages_linux Building DEB and RPM Packages
+
+After the build finishes, generate DEB and RPM packages by typing the following:
+
+<pre>
+cpack .
+</pre>
+
+This will generate the <i>crashfix-service-1.0.x-Linux-i386.deb</i> and <i>crashfix-service-1.0.x-Linux-i386.rpm</i> packages.
+
+*/

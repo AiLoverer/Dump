@@ -1,0 +1,109 @@
+/*!
+
+\page client_integration Client-Side Integration
+
+As described on \ref architecture page,
+your client application should be shipped with a crash reporting library.
+The crash reporting library's purpose is to catch exceptions in the client
+application, generate crash reports and send them over the Internet to 
+CrashFix server.
+
+Currently, CrashFix server supports receiving crash reports from the 
+<a href="http://crashrpt.sourceforge.net">CrashRpt library</a>. 
+CrashRpt is a light-weight, free and open-source library distributed under the New BSD License. 
+It can be used in both commercial and open-source applications, with or without 
+modifications.
+
+First of all, download the latest version of the CrashRpt library from its 
+<a href="http://crashrpt.sourceforge.net">official project page</a>. 
+
+Exhaustive instructions on how to install CrashRpt can be found on CrashRpt project's
+<a href="http://crashrpt.sourceforge.net/docs/html/index.html">Online Documentation</a> page.
+
+Below, we provide specific instructions on how to configure CrashRpt to send crash reports
+to CrashFix server.
+
+\section configure_crashrpt Configuring CrashRpt to Send Crash Reports to CrashFix Server
+
+The CrashRpt configuration is typically stored in <i>CR_INSTALL_INFO</i> structure.
+In order to send crash reports to CrashFix server, you must set the following structure
+fields:
+
+<ul>
+	<li>
+		Set <i>pszAppName</i> field with the name of the project you want to 
+		store crash reports in. For example, if you have created Editor project,
+		set the <i>pszAppName</i> field with the value "Editor".
+	</li>		
+	
+	<li>
+		Set <i>pszAppVersion</i> field with the version of your application. 
+		For example, if the current version of Editor project is v.1.0.0,
+		set the <i>pszAppVersion</i> field with the value "1.0.0".
+	</li>		
+	
+	<li>
+		Set <i>pszUrl</i> field with the the following URL:
+		<i>http://example.com/crashfix/index.php/crashReport/uploadExternal</i>. 
+		In the example above, replace the <i>example.com</i> server name with 
+		your own CrashFix server name.
+	</li>		
+	
+	<li>
+		Set <i>uPriorities</i> field as shown below:
+<pre>
+info.uPriorities[CR_HTTP] = 1;                      // Use HTTP.
+info.uPriorities[CR_SMTP] = CR_NEGATIVE_PRIORITY;   // Not user SMTP.
+info.uPriorities[CR_SMAPI] = CR_NEGATIVE_PRIORITY;  // Not use Simple MAPI.  
+</pre>
+	</li>
+	
+	<li>
+		For <i>dwFlags</i> field, append the flag <i>CR_INST_HTTP_BINARY_ENCODING</i>.		
+	</li>	
+	<li>
+		Other fields of the structure may be configured as recommended in CrashRpt
+		documentation.
+	</li>			
+</ul>
+
+Below is an example of the code you may finally have:
+	
+<pre>
+    CR_INSTALL_INFO info;
+
+    memset(&info, 0, sizeof(CR_INSTALL_INFO));
+    info.cb = sizeof(CR_INSTALL_INFO);  
+    info.pszAppName = _T("Editor");    // Define application name.
+    info.pszAppVersion = _T("1.0.0");  // Define application version.
+    // URL for sending reports over HTTP.			
+    info.pszUrl = _T("http://example.com/crashfix/index.php/crashReport/uploadExternal");         
+    // Define delivery transport priorities. 
+    info.uPriorities[CR_HTTP] = 1;                     // Use HTTP.
+    info.uPriorities[CR_SMTP] = CR_NEGATIVE_PRIORITY;  // Not use SMTP.
+    info.uPriorities[CR_SMAPI] = CR_NEGATIVE_PRIORITY; // Not use Simple MAPI.  
+    // Define flags.
+    info.dwFlags = 0;                    
+    info.dwFlags |= CR_INST_ALL_POSSIBLE_HANDLERS; // Install all available exception handlers.
+    info.dwFlags |= CR_INST_HTTP_BINARY_ENCODING;  // Use binary encoding for HTTP uploads (recommended).      
+</pre>
+
+\section custom_collection_name Defining Custom Collection Name for Crash Report
+
+CrashFix server groups incoming crash reports into collections (see \ref collections page). 
+Although collection names are generated automatically by CrashFix server based on stack trace
+information, sometimes it may be required to define custom collection names. Since v.1.0.4, a client 
+application is able to define custom collection name by adding custom property 
+named 'CollectionId' to crash report. An example code is presented below:
+
+<pre>
+    crAddProperty(_T("CollectionId"), _T("My Custom Collection Name"));
+</pre>
+
+Please note that to define custom collection name, the client application need
+to implement some kind of logics that would determine the collection name
+based on information about a crash.
+
+Further reading: \ref digest
+
+*/

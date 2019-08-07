@@ -1,0 +1,132 @@
+	#=======================================================#
+  #                                                       #
+		# CrashFix Daemon Configuration File                    #
+		#                                                       #
+	  #=======================================================#
+
+	# The CrashFix service (daemon) is a component which 
+# processes incoming crash reports and debugging symbol files.
+
+#-------------------------------------------------------#
+# CrashFix Daemon General Settings                      #
+#-------------------------------------------------------#
+		
+# The following parameter defines the path to license file.
+# The license file is required to start the service.
+# Default: /usr/share/crashfix/licenses/crashfix.lic
+
+	  LICENSE_FILE 	 = 	 /usr/share/crashfix/licenses/crashfix.lic 		
+ 
+	# The following parameter defines the path to file for writing
+# deamon's PID (process ID) to. 
+# Default: /var/run/crashfixd.pid
+
+PIDFILE = /var/run/crashfixd.pid 		
+
+# Root directory of CrashFix web application files (the 
+# directory where index.php file is located).
+
+	WEB_ROOT_DIR =				 /var/www/crashfix/		
+
+	# Path to log file. The log file is maintained by CrashFix 
+# daemon. The daemon logs its operations and errors to this 
+# log file.
+# Default: logs/error.log
+
+	ERROR_LOG_PATH 				=		 /var/log/crashfix/error.log
+
+# Logging level. This parameter can be a number greater or 
+# equal to zero. Level 0 is the default and means to log
+# critical errors only. Level > 0 is used for debugging 
+# and trobleshooting purposes.
+# Default: 0
+
+LOGGING_LEVEL = 0
+
+# Maximum size of the thread pool. CrashFix daemon processes
+# incoming crash reports concurrently in as many threads as 
+# defined by this parameter. 
+# Default: 50
+
+MAX_THREAD_COUNT = 50
+
+# Maximum debug info cache size. CrashFix daemon caches
+# debug info files used recently, improving overall performance
+# of crash report processing. This parameter defines the
+# maximum count of debug info files that can be stored in
+# memory cache.
+# Default: 100
+
+MAX_DEBUG_INFO_CACHE_SIZE = 100				
+
+# Maximum memory usage (in MB). CrashFix daemon optimizes
+# its memory consumption to be within the limit defined
+# by this parameter. Hovewer, it is not guaranteed that
+# the memory consumption is always within the limit; it
+# can be above the limit when processing very large files.
+# Default: 100
+
+MAX_MEM_USAGE_MB = 100
+
+#-------------------------------------------------------#
+#  Monitoring Process Settings                          #
+#-------------------------------------------------------#
+
+# The monitoring process is the process which monitors the 
+# state of CrashFix daemon. The monitoring process 
+# is usually launched automatically when the daemon starts 
+# and killed when the daemon is terminated. The monitoring 
+# process collects and logs sanity information about the 
+# daemon, notifies the webmaster by E-mail on some undesired 
+# events and restarts the daemon on crash.
+
+# The monitoring process is launched if the following 
+# parameter equals to 1, otherwise it is not launched.
+# Default: 1
+
+LAUNCH_MONITORING_PROCESS = 1
+
+# The E-mail address of the person who will receive 
+# notifications from monitoring process. 
+# Example: webmaster@example.com
+
+WEBMASTER_EMAIL = admin@localhost
+
+# SMTP server host address (and, optionally, port). 
+# If port is ommitted, port 25 is used as default.
+# Example 1: 127.0.0.1
+# Example 2: 127.0.0.1:2525
+
+SMTP_SERVER = 127.0.0.1:25
+
+# SMTP login. Can be emty, in this case authentication is disabled.
+
+SMTP_LOGIN = 
+
+# SMTP password. If SMTP_LOGIN is empty, this is ignored.
+
+SMTP_PASSWORD =
+
+# The following parameter controls if the monitoring process 
+# should send an E-mail notification when it detects some 
+# unexpected or undesirable event.
+# Default: 1
+
+NOTIFY_WEBMASTER_ON_ERRORS = 1
+
+# The following parameter controls if the monitoring process 
+# should restart the daemon when monitoring process detects 
+# that daemon has crashed. If the value of this parameter equals 
+# to 1, the daemon is restarted, otherwise the daemon is not
+# restarted.
+# Default: 1
+
+RESTART_DAEMON_ON_CRASH=1			
+
+# Path to log file that is used by the monitoring process
+# to periodically log daemon sanity information and errors.
+# Note: This parameter is affected by PREFIX.
+# Default: /var/log/crashfix/monitor.log
+
+MONITOR_LOG_PATH = /var/log/crashfix/monitor.log
+

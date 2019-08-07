@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <parser>
+    <target>output</target>
+  </parser>
+  <transformer>
+    <target>output</target>
+  </transformer>
+  <files>
+    <directory>../controllers/*</directory>
+    <directory>../components/*</directory>
+    <directory>../models/*</directory>
+    <directory>../tests/*</directory>
+  </files>
+</phpdoc>

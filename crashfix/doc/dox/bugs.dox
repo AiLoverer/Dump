@@ -1,0 +1,53 @@
+/*!
+
+\page bugs Bugs
+
+When you browse a crash report from a collection, you decide whether to take an 
+action on it later. For example, if you can reproduce the crash, you may decide
+to fix it later. In this case you open a bug for the collection. 
+A bug is a synonym of a problem. Ideally, crash collections and bugs should
+be in one-to-one relationship, meaning each crash collection has exactly one
+bug. 
+
+However, it is not limited to associate a bug with a single collection. You may
+associate a bug with several collections, if desired.
+A bug may also be associated with an individual crash report file or with several
+crash reports, however this is not recommended to do. 
+
+To see the list of bugs, you need to log in under a user
+having permission to browse bugs, and the user should be a member 
+of the specified project. After you have logged in, 
+click the <i>Bugs</i> button on the Main menu.
+Bugs page appears (shown in the figure below).
+
+\image html bugs.png "Bugs"
+
+The <i>Bugs</i> page contains the search field allowing to filter bugs. 
+The default bug filter may be different for different user groups. For example,
+developers see open bugs by default, while QA see bugs to verify by default.
+An administrator may configure this on <i>Administer</i> panel.
+
+Below the search field, there is the actions toolbar, where you may choose an
+action to perform. For example, you may open new bug or delete selected bugs.
+Actually, it is not so easy to open a new bug with this button, because
+you have to fill out the form manually. It is much easier to open new bugs
+from Collections or Crash Reports pages.
+
+At the bottom of the Bugs page, you can see some information on total disc space
+occupied by bug attachments and percent of disk quota.
+
+\subsection bug_details Bug Details
+
+To see certain bug details, click its ID. The <i>View Bug #NN</i>
+page appears, where NN is the bug ID. The details page is
+shown below.
+
+\image html bug_details.png "Bug Details"
+
+At the top of the page, there is actions toolbar. Using this toolbar, 
+one may add a comment, attach a file, change bug status or permanently delete the 
+bug. To make a changes to bug, your user account must have manage bugs permission.
+
+Further reading: \ref debug_info
+
+*/

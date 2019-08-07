@@ -1,0 +1,22 @@
+/*!
+
+\page crashfix_admin CrashFix Administration
+
+This section covers the following topics:
+
+\ref first_login page describes
+how to log into CrashFix web application using standard <i>root</i> account. 	
+
+\ref users_and_roles page describes how to manage users.
+
+\ref projects page describes how to manage projects.
+
+\ref daemon page describes how to browse CrashFix
+service's status and recent operations.
+
+\ref mail page describes how to browse the E-mail messages sent by CrashFix
+ web application recently.
+
+\ref logging page describes several troubleshooting tools provided by CrashFix for administrators.
+
+*/

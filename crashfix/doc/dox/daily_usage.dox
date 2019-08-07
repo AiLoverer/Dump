@@ -1,0 +1,32 @@
+/*!
+
+\page daily_usage Daily Usage
+
+This section covers the following topics:
+
+\ref client_integration page describes
+how to send crash reports to CrashFix server with a client-side component called a
+crash reporting library. 	
+	
+\ref digest page describes
+how to display statistics digest and see crash report analysis dynamics on
+time diagrams and pie charts. 	
+	
+\ref crash_reports page describes
+how to browse and manage incoming crash reports. 	
+	
+\ref collections page describes
+how similar crash reports are grouped into collections and how to browse
+and manage those collections. 		
+
+\ref bugs page describes
+how bugs are opened and associated with collections or with individual
+crash reports. 		
+
+\ref debug_info page describes
+how to upload, browse and manage debug info files (also named symbols). 		
+
+\ref batch_import page describes
+how to upload debugging symbols in batch mode. 		
+
+*/

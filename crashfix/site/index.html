@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>CrashFix - A crash report analysis tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">          
+          <li><a href="http://sourceforge.net/projects/crashfix/files">Download</a></li>
+          <li><a href="http://crashfix.sourceforge.net/doc/html/index.html">Documentation</a></li>
+		  <li><a href="http://sourceforge.net/p/crashfix/tickets/">Issues</a></li>
+		  <li><a href="https://groups.google.com/forum/#!forum/crashfix">Forum</a></li>
+		  <li><a href="http://sourceforge.net/p/crashfix/code">Source</a></li>
+        </ul>
+        <img class="logo" src="images/logo.png">
+      </div>
+
+      <div class="jumbotron">
+        <h1>Why CrashFix?</h1>
+        <p>
+			Crash reporting is a technique allowing to receive user feedback and improve quality and stability of your software. When your app encounters a critical error (also named an exception or crash), a crash report file is generated and sent to your server over the Internet. CrashFix server allows to easily receive, store, organize and analyze crash reports sent by your C++ app. 
+		</p>
+        <p><a class="btn btn-lg btn-success" href="http://sourceforge.net/projects/crashfix/files" role="button">Download Now</a></p>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+		  <img class="feature" src="images/processing.png">
+          <h4>Processes crash reports from x86 Windows applications built in MS Visual C++ IDE.</h4>
+          <p>CrashFix is useful during development, beta-testing and post-release stages of application's life cycle. CrashFix allows to continuously collect and analyze crash reports received from users of your C++ app around the world helping to reproduce and fix most popular bugs, improve software stability and prepare hot-fix releases.</p>
+
+		  <img class="feature" src="images/main_features_groups.png">
+          <h4>Groups similar crash reports into collections.</h4>
+          <p>Grouping duplicate crash reports allows to concentrate on most popular bugs. This makes it easier to analyze crash reports - you do not have to view many crash reports in turn, instead you may view a single crash report or several crash reports from a collection, analyze them and (if desired) open a new bug for the entire collection.</p>
+
+		  <img class="feature" src="images/main_features_bugs.png">
+          <h4>Built-in bug tracker.</h4>
+          <p>A bug is a synonym of a problem. CrashFix allows to associate bugs with crash collections and/or with individual crash reports. The bug tracker allows several project members to collaborate: a developer may enhance the code that caused crash, a quality assurance engineer may verify that the problem has been fixed, and the project manager may monitor what bugs have not been fixed yet.</p>
+        </div>
+		
+        <div class="col-lg-6">
+		  <img class="feature" src="images/main_features_statistics.png">
+          <h4>Statistics reports.</h4>
+          <p>CrashFix can produce statistics reports allowing to see crash report upload dynamics and version distribution, operating system version distribution, geographic locations, bug dynamics and other. CrashFix can present statistics in form of text summaries and diagrams (pie charts or line graphs).</p>
+
+		  <img class="feature" src="images/main_features_admin.png">
+          <h4>Simple administration model.</h4>
+          <p>Crash report files being sent by an application to CrashFix server are received and stored in project space. If a user needs to access the project to browse and modify crash reports and/or perform other actions, the administrator may assign the user a role in the desired project. A project has associated disc quotas defining how many disk space the project may occupy.</p>
+
+		  <img class="feature" src="images/main_features_infra.png">
+          <h4>Can be installed on infrastructure totally controlled by you.</h4>
+          <p>CrashFix is a server software hosted on your own server infrastructure. This advantage is especially valuable in corporate environment where crash reports and debugging symbols must be protected and stored privately. CrashFix can even be installed in a local network, not exposing its web interface to outside world.</p>
+		  
+		  <img class="feature" src="images/main_features_install.png">
+		  <h4>Runs in both Windows and Linux operating systems.</h4>
+          <p>Installing it in Windows is a bit easier and more suited for evaluation. CrashFix server supports Linux, because most server infrastructure is Linux-based. Installation instructions for the most popular Linux distributions are provided in our online documentation.</p>
+		  
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Oleg Krivtsov 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
