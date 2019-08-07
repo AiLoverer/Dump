@@ -11,10 +11,14 @@ Dump是专门解决Crash崩溃收集和分析的解决方案；
 Windows系统
 
 # 官网：
-* Crashrpt:
+## Crashrpt:
 > [Crashrpt](http://crashrpt.sourceforge.net/docs/html/crashfix_server.html)
-* CrashFix:
+## CrashFix:
 > [CrashFix](http://crashfix.sourceforge.net/doc/html/index.html)
+### Windows下安装
+[Windows安装步骤](http://crashfix.sourceforge.net/doc/html/install_windows.html)
+### Linux下安装
+[Ubuntu14安装步骤](https://blog.csdn.net/aa13058219642/article/details/80431100)
 
 # 目录结构
 
