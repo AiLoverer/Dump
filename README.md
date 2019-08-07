@@ -9,7 +9,7 @@ Dump是专门解决Crash崩溃收集和分析的解决方案；
 # 平台
 
 ## CrashRpt:
-* Windows operating system (Windows Vista or later).
+* Windows operating system (Windows xp or later).
 ## CrashFix：
 * Windows operating system (Windows Vista or later)./ Linux operating system.
 * Apache HTTP Server (version 2.2 or later).
