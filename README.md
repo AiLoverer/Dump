@@ -8,7 +8,12 @@ Dump是专门解决Crash崩溃收集和分析的解决方案；
 
 # 平台
 
-Windows系统
+* Windows operating system (Windows Vista or later).
+* Apache HTTP Server (version 2.2 or later).
+* PHP (version 5.3 or later).
+* Database (MySQL).
+* 2 GB of free disk space (to store crash reports and symbols).
+* Network connection (either LAN or Internet).
 
 # 官网：
 ## Crashrpt:
